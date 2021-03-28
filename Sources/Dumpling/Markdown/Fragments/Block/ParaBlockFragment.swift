@@ -13,7 +13,7 @@ public struct ParaBlockFragment: MarkdownBlockFragment {
     
     public func build(markdown: MarkdownType) -> Parser<AST.ParagraphNode> {
         return Parsers.zip(
-            Parsers.zeroOrManySpaces, //remove start spaces
+            Parsers.zeroOrManySpaces, // remove start spaces
             Parsers.emptyLines,
             Parsers.zeroOrManySpaces
         ).mapTo(AST.ParagraphNode(children: []))

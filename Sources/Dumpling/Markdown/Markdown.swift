@@ -128,4 +128,3 @@ public final class Markdown {
         return parser().run(&reader) ?? AST.RootNode(children: [])
     }
 }
-

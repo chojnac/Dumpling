@@ -11,6 +11,7 @@ import Foundation
 struct SpaceInlineFragment: MarkdownInlineFragment {
     public let identifier: String = "space"
 
-    func build(markdown: MarkdownType) -> Parser<AST.SpaceNode> { Parsers.oneOrManySpaces.map(AST.SpaceNode.init(count:))
+    func build(markdown: MarkdownType) -> Parser<AST.SpaceNode> {
+        Parsers.oneOrManySpaces.map(AST.SpaceNode.init(count:))
     }
 }

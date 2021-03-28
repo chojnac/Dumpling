@@ -17,7 +17,7 @@ final class ParsersCoreTests_repeatUntil: XCTestCase {
             Parsers.char(inSet: .alphanumerics),
             stop: Parsers.space
         )
-        .map({ characters, space in String(characters) })
+        .map({ characters, _ in String(characters) })
         .run(&input)
 
         XCTAssertEqual(result, "Lorem")
@@ -30,7 +30,7 @@ final class ParsersCoreTests_repeatUntil: XCTestCase {
             Parsers.char(inSet: .whitespaces),
             stop: Parsers.space
         )
-        .map({ characters, space in String(characters) })
+        .map({ characters, _ in String(characters) })
         .run(&input)
 
         XCTAssertEqual(result, "")
@@ -43,7 +43,7 @@ final class ParsersCoreTests_repeatUntil: XCTestCase {
             Parsers.char(inSet: .whitespaces),
             stop: Parsers.space
         )
-        .map({ characters, space in String(characters) })
+        .map({ characters, _ in String(characters) })
         .run(&input)
 
         XCTAssertNil(result)

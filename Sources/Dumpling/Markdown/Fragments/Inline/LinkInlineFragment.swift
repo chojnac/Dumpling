@@ -16,32 +16,31 @@ public struct LinkInlineFragment: MarkdownInlineFragment {
             Parsers.minMax(parser: Parsers.one(character: "!"), min: 0, max: 1),
             Self.balancedBrackets("["),
             Self.linkSource()
-        ).map { imageIndicator, text, source in
+        ).map { _, text, source in
             AST.LinkNode(text: text, link: source.0, title: source.1)
         }
     }
 }
-
 
 extension LinkInlineFragment {
     static let stopCharactersSet = CharacterSet(charactersIn: "\n\t")
 
     static func closeTag(_ open: Character) -> Character {
         switch open {
-            case "(":
+        case "(":
             return ")"
-            case "[":
-                return "]"
-            case "{":
-                return "}"
-            case "<":
-                return ">"
-            case "'":
-                return "'"
-            case "\"":
-                return "\""
-            default:
-                fatalError("Unsupported character - only allowed \"({[<\"")
+        case "[":
+            return "]"
+        case "{":
+            return "}"
+        case "<":
+            return ">"
+        case "'":
+            return "'"
+        case "\"":
+            return "\""
+        default:
+            fatalError("Unsupported character - only allowed \"({[<\"")
         }
     }
     private enum Token {
@@ -114,7 +113,7 @@ extension LinkInlineFragment {
                 case .character(let value):
                     if balanceOpenTagsCount == 0 {
                         reader = origin
-                        return nil //character without open tag makes no sense, so exit
+                        return nil // character without open tag makes no sense, so exit
                     }
                     accumulator.append(value)
                 }

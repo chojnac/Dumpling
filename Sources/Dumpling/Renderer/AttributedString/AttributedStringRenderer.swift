@@ -27,21 +27,21 @@ public class AttributedStringRenderer: Renderer {
 
     private var contentRenderer: ContentRenderer!
     private let theme: AttributedStringTheme
-    private var nodeRenderer: [String : AnyAttributedStringRenderFragment] = [:]
+    private var nodeRenderer: [String: AnyAttributedStringRenderFragment] = [:]
 
     public init(theme: AttributedStringTheme) {
         self.theme = theme
         nodeRenderer = [
-            AST.EOFNode.typeName : NothingNodeRenderFragment().any(),
-            AST.NewLineNode.typeName : NothingNodeRenderFragment().any(),
-            AST.StyleNode.typeName : StyleNodeRenderFragment().any(),
-            AST.TextNode.typeName : TextNodeRenderFragment().any(),
-            AST.SpaceNode.typeName : SpaceNodeRenderFragment().any(),
-            AST.ParagraphNode.typeName : ParagraphNodeRenderFragment().any(),
-            AST.HeaderNode.typeName : HeaderNodeRenderFragment().any(),
-            AST.ListNode.typeName : ListNodeRenderFragment().any(),
-            AST.LinkNode.typeName : LinkNodeRenderFragment().any(),
-            AST.CodeNode.typeName : CodeNodeRenderFragment().any(),
+            AST.EOFNode.typeName: NothingNodeRenderFragment().any(),
+            AST.NewLineNode.typeName: NothingNodeRenderFragment().any(),
+            AST.StyleNode.typeName: StyleNodeRenderFragment().any(),
+            AST.TextNode.typeName: TextNodeRenderFragment().any(),
+            AST.SpaceNode.typeName: SpaceNodeRenderFragment().any(),
+            AST.ParagraphNode.typeName: ParagraphNodeRenderFragment().any(),
+            AST.HeaderNode.typeName: HeaderNodeRenderFragment().any(),
+            AST.ListNode.typeName: ListNodeRenderFragment().any(),
+            AST.LinkNode.typeName: LinkNodeRenderFragment().any(),
+            AST.CodeNode.typeName: CodeNodeRenderFragment().any(),
         ]
 
         contentRenderer = ContentRenderer(renderer: self)

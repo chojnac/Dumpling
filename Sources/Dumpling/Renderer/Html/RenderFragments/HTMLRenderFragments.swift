@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 public struct StyleNodeHTMLRenderFragment: HTMLRenderFragment {
     public func render(
         _ node: AST.StyleNode,
@@ -44,11 +43,11 @@ public struct TextNodeHTMLRenderFragment: HTMLRenderFragment {
         _ node: AST.TextNode,
         renderer: HTMLContentRenderer
     ) -> String? {
-        let characterEntities: [Character: String] = ["\"":"&quot;",
+        let characterEntities: [Character: String] = ["\"": "&quot;",
                                  "&": "&amp;",
                                  "'": "&apos;",
                                  "<": "&lt;",
-                                 ">":"&gt;"]
+                                 ">": "&gt;"]
         var result = ""
 
         var reader = node.text[...]
@@ -162,8 +161,6 @@ public struct ListNodeHTMLRenderFragment: HTMLRenderFragment {
         return chunks.joined()
     }
 }
-
-
 
 public struct NothingNodeHTMLRenderFragment: HTMLRenderFragment {
     public func render(

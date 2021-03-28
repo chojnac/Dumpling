@@ -8,6 +8,7 @@
 
 import Foundation
 
+// swiftlint:disable line_length
 extension TestCase {
     struct List {
         static let case01 = TestCase(
@@ -103,4 +104,3 @@ extension TestCase {
         )
     }
 }
-

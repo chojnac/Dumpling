@@ -21,6 +21,4 @@ final class AttributedStringRendererTests: XCTestCase {
         XCTAssertEqual(result.string, "Lorem ipsum\n")
     }
 
-
-
 }

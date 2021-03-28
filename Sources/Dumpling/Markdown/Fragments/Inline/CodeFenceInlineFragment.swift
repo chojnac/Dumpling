@@ -19,12 +19,12 @@ public struct CodeFenceInlineFragment: MarkdownInlineFragment {
             Parsers.zeroOrManySpaces
         ).map { $0.1 }
 
-        //TODO: suppor opening/closing with more that 3 ` characters
+        // TODO: suppor opening/closing with more that 3 ` characters
         let opening = Parsers.zip(
             Parsers.lineStart,
             Parsers.zeroOrManySpaces,
             Parsers.starts(with: String(repeating: "`", count: 3)),
-            //Parsers.min(character: "`", min: 3),
+            // Parsers.min(character: "`", min: 3),
             codeParamsParser,
             Parsers.newLine
         ).map { _, _, _, params, _  in

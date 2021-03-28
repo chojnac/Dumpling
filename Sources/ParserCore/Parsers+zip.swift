@@ -8,6 +8,7 @@
 
 import Foundation
 
+// swiftlint:disable force_cast
 extension Parsers {
     public static func zip<A: ParserType, B: ParserType>(
         _ p1: A,

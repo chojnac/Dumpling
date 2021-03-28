@@ -48,7 +48,7 @@ open class AttributedStringTheme {
         )
         #endif
         
-        let blockCodeParagraph = StringStyle() {
+        let blockCodeParagraph = StringStyle {
             let paragraphStyle = NSMutableParagraphStyle()
             paragraphStyle.firstLineHeadIndent = 0
             paragraphStyle.headIndent = 0

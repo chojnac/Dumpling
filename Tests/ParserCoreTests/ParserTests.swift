@@ -46,7 +46,6 @@ final class ParserTests: XCTestCase {
         XCTAssertEqual(String(input), testText)
     }
 
-
     func test_flatMap_with_result() {
         func handle(_ result: String) -> Parser<Bool> {
             return .just(true)

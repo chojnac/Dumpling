@@ -16,7 +16,6 @@ final class ParserTests_Header: XCTestCase {
         parser = Markdown()
     }
 
-
     func testSimple1() throws {
         let reader = "# Header 1 "
 
@@ -52,6 +51,7 @@ final class ParserTests_Header: XCTestCase {
 """
 
         let result = parser.parse(reader).debugString()
+        // swiftlint:disable:next line_length
         XCTAssertEqual(result, "<h2>Span␣Elements</h2><h3>Links</h3><p>␣Markdown␣supports␣two␣style␣of␣links:␣<em>inline</em>␣and␣<em>reference</em>.</p><p>In␣both␣styles,␣the␣link␣text␣is␣delimited␣by␣[square␣brackets].</p>")
     }
 

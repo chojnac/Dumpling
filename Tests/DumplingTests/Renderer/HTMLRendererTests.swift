@@ -18,6 +18,4 @@ final class HTMLRendererTests: XCTestCase {
         XCTAssertEqual(result, "Lorem&lt;em&gt;ipsum &quot;&amp;&lt;/em&gt;")
     }
 
-
-
 }

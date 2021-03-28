@@ -24,7 +24,12 @@ public struct ListBlockFragment: MarkdownBlockFragment {
 ///
 extension ListBlockFragment {
 
-    static func nextLineSameLevel(kind: AST.ListNode.Kind, identCount: Int, markdown: MarkdownType, parentsOpenings: [Parser<Void>]) -> Parser<(identCount: Int, content: [ASTNode])> {
+    static func nextLineSameLevel(
+        kind: AST.ListNode.Kind,
+        identCount: Int,
+        markdown: MarkdownType,
+        parentsOpenings: [Parser<Void>]
+    ) -> Parser<(identCount: Int, content: [ASTNode])> {
 
         let openingSequence = openingSequenceParser(identCount: identCount, type: kind)
 
@@ -41,7 +46,10 @@ extension ListBlockFragment {
         }
     }
 
-    static func openingSequenceParser(identCount: Int, type: AST.ListNode.Kind? = nil) -> Parser<(spacesCountPre: Int, spacesCountPost: Int, contentIdent: Int, type: AST.ListNode.Kind)> {
+    static func openingSequenceParser(
+        identCount: Int,
+        type: AST.ListNode.Kind? = nil
+    ) -> Parser<(spacesCountPre: Int, spacesCountPost: Int, contentIdent: Int, type: AST.ListNode.Kind)> {
 
         let orderedListIndicatorParser = Parsers.zip(
             Parsers.intNumber(),
@@ -59,7 +67,10 @@ extension ListBlockFragment {
             case .bullet:
                 indicatorParser = bulletListIndicatorParser
             case .ordered:
-                indicatorParser = orderedListIndicatorParser.flatMap({ $0.isSameType(type) ? .just($0) : .zero() }) // check if the delimeted is the same
+                // check if the delimeted is the same
+                indicatorParser = orderedListIndicatorParser.flatMap {
+                    $0.isSameType(type) ? .just($0) : .zero()
+                }
             }
         } else {
             indicatorParser = Parsers.oneOf(orderedListIndicatorParser, bulletListIndicatorParser)
@@ -86,7 +97,10 @@ extension ListBlockFragment {
         }
     }
 
-    private static func inlineContentParser(openingSequenceParsers: [Parser<Void>], markdown: MarkdownType) -> Parser<[ASTNode]> {
+    private static func inlineContentParser(
+        openingSequenceParsers: [Parser<Void>],
+        markdown: MarkdownType
+    ) -> Parser<[ASTNode]> {
         let stopParser = Parsers.oneOf(
             Parsers.oneOf(openingSequenceParsers).mapToVoid,
             Parsers.emptyLines.mapToVoid
@@ -101,7 +115,12 @@ extension ListBlockFragment {
             })
     }
 
-    static func list(level: UInt, identCount: Int, markdown: MarkdownType, parentsOpenings: [Parser<Void>]) -> Parser<AST.ListNode> {
+    static func list(
+        level: UInt,
+        identCount: Int,
+        markdown: MarkdownType,
+        parentsOpenings: [Parser<Void>]
+    ) -> Parser<AST.ListNode> {
         guard level <= 6 else {
             return .zero()
         }
@@ -117,7 +136,9 @@ extension ListBlockFragment {
             }
             let currentListType = openSequenceResult.type
 
-            let nextLevelOpenSequenceParser = openingSequenceParser(identCount: openSequenceResult.contentIdent).mapToVoid
+            let nextLevelOpenSequenceParser = openingSequenceParser(
+                identCount: openSequenceResult.contentIdent
+            ).mapToVoid
 
             let contentParser = inlineContentParser(
                 openingSequenceParsers: parentsOpenings + [openingSequence.mapToVoid, nextLevelOpenSequenceParser],
@@ -183,7 +204,7 @@ extension AST.ListNode.Kind {
         switch (self, value) {
         case (.bullet, .bullet):
             return true
-        case (let .ordered(_, lhs), let .ordered(_ , rhs)):
+        case (let .ordered(_, lhs), let .ordered(_, rhs)):
             return lhs == rhs
         default:
             return false

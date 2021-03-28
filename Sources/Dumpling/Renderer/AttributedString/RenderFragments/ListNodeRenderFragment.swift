@@ -66,7 +66,8 @@ open class ListNodeRenderFragment: AttributedStringRenderFragment {
         isLastItem: Bool
     ) -> NSParagraphStyle {
         let initialHeadIdent: CGFloat = 0
-        let nestedListOffset: CGFloat = 10 // horizontal offset between parent first character after indicator and nested indicator
+        // horizontal offset between parent first character after indicator and nested indicator
+        let nestedListOffset: CGFloat = 10
         let indentation2: CGFloat
 
         switch indicator {

@@ -9,7 +9,7 @@
 import Foundation
 
 public class HTMLRenderer: Renderer {
-    private var nodeRenderer: [String : AnyHTMLRenderFragment] = [:]
+    private var nodeRenderer: [String: AnyHTMLRenderFragment] = [:]
 
     /// Helper type preventing exposing `HTMLRenderer::render(_ nodes: [ASTNode])` in the public interface
     private struct ContentRenderer: HTMLContentRenderer {
@@ -23,16 +23,16 @@ public class HTMLRenderer: Renderer {
 
     public init() {
         nodeRenderer = [
-            AST.EOFNode.typeName : NothingNodeHTMLRenderFragment().any(),
-            AST.NewLineNode.typeName : NothingNodeHTMLRenderFragment().any(),
-            AST.StyleNode.typeName : StyleNodeHTMLRenderFragment().any(),
-            AST.TextNode.typeName : TextNodeHTMLRenderFragment().any(),
-            AST.SpaceNode.typeName : SpaceNodeHTMLRenderFragment().any(),
-            AST.ParagraphNode.typeName : ParagraphHTMLNodeRenderFragment().any(),
-            AST.HeaderNode.typeName : HeaderNodeHTMLRenderFragment().any(),
-            AST.ListNode.typeName : ListNodeHTMLRenderFragment().any(),
-            AST.LinkNode.typeName : LinkNodeHTMLRenderFragment().any(),
-            AST.CodeNode.typeName : CodeNodeHTMLRenderFragment().any(),
+            AST.EOFNode.typeName: NothingNodeHTMLRenderFragment().any(),
+            AST.NewLineNode.typeName: NothingNodeHTMLRenderFragment().any(),
+            AST.StyleNode.typeName: StyleNodeHTMLRenderFragment().any(),
+            AST.TextNode.typeName: TextNodeHTMLRenderFragment().any(),
+            AST.SpaceNode.typeName: SpaceNodeHTMLRenderFragment().any(),
+            AST.ParagraphNode.typeName: ParagraphHTMLNodeRenderFragment().any(),
+            AST.HeaderNode.typeName: HeaderNodeHTMLRenderFragment().any(),
+            AST.ListNode.typeName: ListNodeHTMLRenderFragment().any(),
+            AST.LinkNode.typeName: LinkNodeHTMLRenderFragment().any(),
+            AST.CodeNode.typeName: CodeNodeHTMLRenderFragment().any(),
         ]
 
         contentRenderer = ContentRenderer(renderer: self)

@@ -290,7 +290,7 @@ extension Parsers {
 
 extension Parsers {
     public static func intNumber() -> Parser<Int> {
-        Parsers.minMax(parser: Parsers.char(inSet: .decimalDigits), min:1, max: 9)
+        Parsers.minMax(parser: Parsers.char(inSet: .decimalDigits), min: 1, max: 9)
             .map {
                 Int(String($0))
             }

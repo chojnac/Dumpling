@@ -9,6 +9,7 @@
 import Dumpling
 import Foundation
 
+// swiftlint:disable line_length
 extension TestCase {
     struct Emphasis {
         static let case01 = TestCase(text: "**lorem**",
@@ -43,7 +44,6 @@ extension TestCase {
 
         static let case11 = TestCase(text: "**\ntest",
                                      parsed: "<p>**⏎test</p>")
-
 
         static let case12 = TestCase(text: "*lorem\n*",
                                      parsed: #"<p>*lorem⏎*</p>"#)

@@ -10,7 +10,6 @@ import Foundation
 
 public enum Parsers {
 
-
     /// Execute parsers until the first one returns a result or fail if none of them is successful
     ///
     /// - Parameter parsers: parsers to execute
@@ -52,7 +51,10 @@ public enum Parsers {
     ///  - stop: consuming parser which stops the loop
     /// - Returns: a tuple of accumulated results from the `check` parser and the result of
     /// stop parser (content is match succeed or nil if loop finished from other reasons)
-    public static func repeatUntil<P1: ParserType, P2: ParserType>(_ check: P1, stop: P2) -> Parser<(accumulator: [P1.Element], stop: P2.Element?)> {
+    public static func repeatUntil<P1: ParserType, P2: ParserType>(
+        _ check: P1,
+        stop: P2
+    ) -> Parser<(accumulator: [P1.Element], stop: P2.Element?)> {
         return Parser("parseUntil[\(check.name) stop=\(stop.name)]") { reader in
             var accumulator: [P1.Element] = []
 
@@ -78,4 +80,3 @@ public enum Parsers {
         }
     }
 }
-
