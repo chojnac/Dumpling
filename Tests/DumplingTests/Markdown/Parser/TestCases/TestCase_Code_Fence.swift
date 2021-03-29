@@ -11,11 +11,19 @@ import Foundation
 
 extension TestCase {
     struct CodeFence {
-        static let case01 = TestCase(text: "```test\n  func() {    \n  }   \n  ```",
-                                     parsed: "<p><code params=\"test\">  func() {    \n  }   </code></p>")
+        static let case01 = TestCase(
+            text: "```test\n  func() {    \n  }   \n  ```",
+            parsed: "<code params=\"test\" block=\"true\">  func() {    \n  }   </code>"
+        )
 
-        static let case02 = TestCase(text: "```  \n  func() {}   \n\n\n```",
-                                     parsed: "<p><code>  func() {}   \n\n</code></p>")
+        static let case02 = TestCase(
+            text: "```  \n  func() {}   \n\n\n```",
+            parsed: "<code block=\"true\">  func() {}   \n\n</code>"
+        )
 
+        static let case03 = TestCase(
+            text: "Inline `code` or\n```\nblock code\n```",
+            parsed: "<p>Inline␣<code>code</code>␣or⏎</p><code block=\"true\">block code</code>"
+        )
     }
 }

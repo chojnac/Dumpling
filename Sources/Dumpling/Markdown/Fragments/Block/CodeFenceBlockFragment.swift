@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct CodeFenceInlineFragment: MarkdownInlineFragment {
+public struct CodeFenceBlockFragment: MarkdownBlockFragment {
     public let identifier: String = "codeFenc"
     
     public func build(markdown: MarkdownType) -> Parser<AST.CodeNode> {

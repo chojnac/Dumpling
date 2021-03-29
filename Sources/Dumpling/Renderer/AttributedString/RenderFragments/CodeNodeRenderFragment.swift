@@ -37,6 +37,9 @@ public struct CodeNodeRenderFragment: AttributedStringRenderFragment {
         }
         
         attributedString.addAttributes(attributes, range: NSRange(location: 0, length: attributedString.length))
+        if node.isBlock {
+            attributedString.append(NSAttributedString(string: "\n"))
+        }
         return attributedString
     }
 }

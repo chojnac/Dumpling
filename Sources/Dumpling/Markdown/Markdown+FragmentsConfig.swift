@@ -69,7 +69,6 @@ extension Markdown.FragmentsConfig {
         .init(
             inline: [
                 EscapeInlineFragment().any(),
-                CodeFenceInlineFragment().any(),
                 CodeSpanInlineFragment().any(),
                 LinkInlineFragment().any(),
                 EnclosedInlineFragment(id: "s", str: "~~").any(),
@@ -81,6 +80,7 @@ extension Markdown.FragmentsConfig {
             block: [
                 HeaderBlockFragment().any(),
                 ListBlockFragment().any(),
+                CodeFenceBlockFragment().any(),
                 ParaBlockFragment().any()
             ]
         ),
