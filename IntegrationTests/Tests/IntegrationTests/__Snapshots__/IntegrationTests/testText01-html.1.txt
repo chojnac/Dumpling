@@ -1,0 +1,43 @@
+<p>
+<em>
+italic</em>
+
+ or <em>
+italics</em>
+
+ <strong>
+bold</strong>
+
+ or <strong>
+bold</strong>
+
+ <s>
+strikethrough</s>
+
+</p>
+<h1>
+Header 1</h1>
+
+<h2>
+Header 2</h2>
+
+<h3>
+Header 3</h3>
+
+<h4>
+Header 4</h4>
+
+<h5>
+Header 5</h5>
+
+<p>
+###### Header 6</p>
+<ul><li>List<ul><li>List</li>
+</ul></li>
+<li>List</li>
+</ul><ol><li>Ordered </li>
+<li>Lists</li>
+</ol><p>
+Inline <code>code</code> or </p>
+<pre><code>block code</code></pre><p>
+<a href="http://github.com/chojnac/">Links</a></p>
