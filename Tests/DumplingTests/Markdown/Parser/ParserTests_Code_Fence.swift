@@ -27,4 +27,10 @@ final class ParserTests_Code_Fence: XCTestCase {
         let result = parser.parse(tc.text).debugString()
         XCTAssertEqual(result, tc.parsed)
     }
+
+    func test_processor_case03() {
+        let tc = TestCase.CodeFence.case03
+        let result = parser.parse(tc.text).debugString()
+        XCTAssertEqual(result, tc.parsed)
+    }
 }

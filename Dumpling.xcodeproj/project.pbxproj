@@ -18,7 +18,7 @@
 		0E0EAD4E2602736000EED294 /* Renderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0EAD2A2602735F00EED294 /* Renderer.swift */; };
 		0E0EAD4F2602736000EED294 /* PlainTextRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0EAD2B2602735F00EED294 /* PlainTextRenderer.swift */; };
 		0E0EAD512602736000EED294 /* Markdown.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0EAD2E2602735F00EED294 /* Markdown.swift */; };
-		0E0EAD522602736000EED294 /* CodeFenceInlineFragment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0EAD302602735F00EED294 /* CodeFenceInlineFragment.swift */; };
+		0E0EAD522602736000EED294 /* CodeFenceBlockFragment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0EAD302602735F00EED294 /* CodeFenceBlockFragment.swift */; };
 		0E0EAD532602736000EED294 /* ParaBlockFragment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0EAD312602735F00EED294 /* ParaBlockFragment.swift */; };
 		0E0EAD542602736000EED294 /* CodeSpanInlineFragment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0EAD322602736000EED294 /* CodeSpanInlineFragment.swift */; };
 		0E0EAD552602736000EED294 /* LinkInlineFragment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0EAD332602736000EED294 /* LinkInlineFragment.swift */; };
@@ -163,7 +163,7 @@
 		0E0EAD2A2602735F00EED294 /* Renderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Renderer.swift; sourceTree = "<group>"; };
 		0E0EAD2B2602735F00EED294 /* PlainTextRenderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlainTextRenderer.swift; sourceTree = "<group>"; };
 		0E0EAD2E2602735F00EED294 /* Markdown.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Markdown.swift; sourceTree = "<group>"; };
-		0E0EAD302602735F00EED294 /* CodeFenceInlineFragment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodeFenceInlineFragment.swift; sourceTree = "<group>"; };
+		0E0EAD302602735F00EED294 /* CodeFenceBlockFragment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodeFenceBlockFragment.swift; sourceTree = "<group>"; };
 		0E0EAD312602735F00EED294 /* ParaBlockFragment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParaBlockFragment.swift; sourceTree = "<group>"; };
 		0E0EAD322602736000EED294 /* CodeSpanInlineFragment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodeSpanInlineFragment.swift; sourceTree = "<group>"; };
 		0E0EAD332602736000EED294 /* LinkInlineFragment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinkInlineFragment.swift; sourceTree = "<group>"; };
@@ -590,6 +590,7 @@
 		0EDD1591260F63D80067E884 /* Block */ = {
 			isa = PBXGroup;
 			children = (
+				0E0EAD302602735F00EED294 /* CodeFenceBlockFragment.swift */,
 				0E0EAD382602736000EED294 /* EOFBlockFragment.swift */,
 				0E0EAD362602736000EED294 /* HeaderBlockFragment.swift */,
 				0E0EAD352602736000EED294 /* ListBlockFragment.swift */,
@@ -601,7 +602,6 @@
 		0EDD1592260F63ED0067E884 /* Inline */ = {
 			isa = PBXGroup;
 			children = (
-				0E0EAD302602735F00EED294 /* CodeFenceInlineFragment.swift */,
 				0E0EAD322602736000EED294 /* CodeSpanInlineFragment.swift */,
 				0E0EAD372602736000EED294 /* EnclosedInlineFragment.swift */,
 				0E0EAD342602736000EED294 /* EscapeFragment.swift */,
@@ -892,7 +892,7 @@
 				0E76D0BC2609E22500821BB3 /* AttributedStringRenderFragments.swift in Sources */,
 				0E0EAD4C2602736000EED294 /* HTMLRenderer.swift in Sources */,
 				0E0EAD5E2602736000EED294 /* LocalParsers.swift in Sources */,
-				0E0EAD522602736000EED294 /* CodeFenceInlineFragment.swift in Sources */,
+				0E0EAD522602736000EED294 /* CodeFenceBlockFragment.swift in Sources */,
 				0E0EAD552602736000EED294 /* LinkInlineFragment.swift in Sources */,
 				0E0EAD492602736000EED294 /* AST+debugRenderer.swift in Sources */,
 				0E0EAD592602736000EED294 /* EnclosedInlineFragment.swift in Sources */,

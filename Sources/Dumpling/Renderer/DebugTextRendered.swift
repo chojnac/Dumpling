@@ -85,6 +85,10 @@ public struct DebugTextRenderer: Renderer {
             chunks.append(" params=\"\(params)\"")
         }
 
+        if node.isBlock {
+            chunks.append(" block=\"true\"")
+        }
+
         chunks.append(">")
         render(node.children, chunks: &chunks)
         chunks.append("</code>")
