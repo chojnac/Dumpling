@@ -17,11 +17,11 @@
 
 ## Internal architecture
 
-Dumpling uses highly extensible and modular functional approach called parser combinator.
+Dumpling uses a highly extensible and modular functional approach called parser combinator.
 
 Markdown parser produces an intermediate data model called Abstract Syntax Tree (AST).
 
-Renderer implementations uses AST to produce the final output. Dumpling provides 3 main build-in output formats - Plain Text, HTML and NSAttributedString.
+Renderer implementations use AST to produce the final output. Dumpling provides 3 main build-in output formats - Plain Text, HTML and NSAttributedString.
 
 ## Supported Elements
 
@@ -51,7 +51,7 @@ block code
 [Links](http://github.com/chojnac/)
 ````
 
-Please not that the goal of this project was to create a foundation for very flexible Markdown parser. Dumpling doesn't fully support all Markdown specs. This is very young implementation so it covers only most common set of Markdown features. 
+Please note that the goal of this project was to create a foundation for a  flexible Markdown parser. Dumpling doesn't fully support all Markdown specs. This is a very young implementation so it covers only the most common set of Markdown features. 
 
 ## Installation
 
@@ -124,7 +124,7 @@ let string = Markdown()
         .renderAttributedString(theme: theme)
 ```
 
-You will find more advence examples in the [project example playground](https://github.com/chojnac/Dumpling/tree/main/Examples/Playground.playground)
+You will find more advanced examples in the [project example playground](https://github.com/chojnac/Dumpling/tree/main/Examples/Playground.playground)
 
 ## License
 
