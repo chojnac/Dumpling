@@ -10,6 +10,7 @@ import Foundation
 
 public struct HeaderBlockFragment: MarkdownBlockFragment {
     public let identifier: String = "header"
+    let maxLevel = 6
 
     public func build(markdown: MarkdownType) -> Parser<AST.HeaderNode> {
         let start: Parser<Int> = Parsers.zip(
@@ -17,7 +18,7 @@ public struct HeaderBlockFragment: MarkdownBlockFragment {
             Parsers.oneOrManySpaces
         ).flatMap {
             let count = $0.0.count
-            return count > 5 ? Parser<Int>.zero() : .just(count)
+            return count > maxLevel ? Parser<Int>.zero() : .just(count)
         }
 
         let stop = Parsers.newLine.mapToVoid
