@@ -8,7 +8,7 @@
 
 import XCTest
 import Dumpling
-
+#if canImport(UIKit) || canImport(AppKit)
 final class AttributedStringRendererTests: XCTestCase {
 
     let renderer = AttributedStringRenderer(
@@ -22,3 +22,4 @@ final class AttributedStringRendererTests: XCTestCase {
     }
 
 }
+#endif

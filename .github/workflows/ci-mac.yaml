@@ -1,0 +1,35 @@
+name: "ci-mac"
+on: 
+  push:
+    branches:
+      - main
+    paths:
+      - "Sources/**"
+      - "Tests/**"
+  pull_request:
+    branches: 
+      - '*'
+
+jobs:
+  build:
+    name: MacOS Tests
+    runs-on: macos-latest
+    env: 
+      DEVELOPER_DIR: /Applications/Xcode_12.4.app/Contents/Developer
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+      # - name: Tests MacOS
+      #   run: make test-macos
+      # - name: Integration Test MacOS
+      #   run: make test-integration-macos
+      - name: Tests iOS
+        run: make test-ios
+      - name: Integration Test iOS 
+        run: make test-integration-ios
+      - name: Upload artifacts
+        if: failure()
+        uses: actions/upload-artifact@v2 
+        with: 
+          name: test_results
+          path: .build/DerivedData/Logs/Test/
