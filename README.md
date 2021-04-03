@@ -1,12 +1,12 @@
 # Dumpling
 
-[![Build Status](https://github.com/chojnac/DumplingMk3/actions/workflows/ci.yaml/badge.svg)](https://github.com/chojnac/DumplingMk3/actions)
+[![Build Status](https://github.com/chojnac/Dumpling/actions/workflows/ci-mac.yaml/badge.svg?branch=main)](https://github.com/chojnac/Dumpling/actions/workflows/ci-mac.yaml)
 [![Version](https://img.shields.io/cocoapods/v/Dumpling.svg?style=flat)](https://cocoapods.org/pods/Dumpling)
 [![License](https://img.shields.io/cocoapods/l/Dumpling.svg?style=flat)](https://cocoapods.org/pods/Dumpling)
 [![Platform](https://img.shields.io/cocoapods/p/Dumpling.svg?style=flat)](https://cocoapods.org/pods/Dumpling)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 
-**Dumpling** is a pure Swift customisable and extensible Markdown parser for iOS and macOS.  
+**Dumpling** is a pure Swift customisable and extensible Markdown parser for iOS, macOS and Linux.  
 
 ## Features
 
@@ -14,6 +14,7 @@
 - Easy to extend with new markdown tags, output formats or customise existing implementations.
 - Intermediate layer describing document structure with Abstract Syntax Tree
 - Build-in support for rendering outputs as the Plain Text, HTML, NSAttributedString.
+- Multiplatform - iOS, macOS, Linux.
 
 ## Internal architecture
 
