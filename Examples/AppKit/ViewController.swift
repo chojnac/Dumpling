@@ -57,7 +57,7 @@ final class ViewController: NSViewController {
 
     @IBAction func changePreviewType(_ source: NSSegmentedControl) {
         webView.isHidden = source.selectedSegment == 0
-        textView.isHidden = !webView.isHidden
+        textView.enclosingScrollView?.isHidden = !webView.isHidden
     }
 }
 

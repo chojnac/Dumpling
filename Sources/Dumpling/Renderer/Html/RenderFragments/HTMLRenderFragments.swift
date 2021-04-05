@@ -111,7 +111,7 @@ public struct LinkNodeHTMLRenderFragment: HTMLRenderFragment {
         case let .inline(link):
             chunks.append(" href=\"\(link)\"")
         case let .reference(ref):
-            chunks.append(" ref=\"\(ref)\"")
+            chunks.append(" href=\"\(ref)\"")
         }
 
         chunks.append(">")

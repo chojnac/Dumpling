@@ -88,6 +88,7 @@ extension AttributedStringTheme.StyleKey {
     public static let em = Self("em")
     public static let strong = Self("strong")
     public static let s = Self("s")
+    public static let link = Self("link")
 
     public static let code = Self("code")
     public static let codeBlock = Self("codeBlock")
