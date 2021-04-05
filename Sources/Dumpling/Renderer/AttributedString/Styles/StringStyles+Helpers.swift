@@ -80,7 +80,7 @@ extension StringStyle {
     }
     
     public static func defaultParagraph(
-        paragraphSpacing: CGFloat = 20,
+        paragraphSpacing: CGFloat = 0,
         headIndent: CGFloat = 0,
         firstLineHeadIndent: CGFloat = 0
     ) -> StringStyle {
@@ -92,6 +92,22 @@ extension StringStyle {
             
             var attributes = $0
             attributes[.paragraphStyle] = paragraphStyle
+            return attributes
+        }
+    }
+
+    public static func strikethrough(
+        style: NSUnderlineStyle?,
+        color: Color?
+    ) -> StringStyle {
+        .init {
+            var attributes = $0
+            if let value = style {
+                attributes[.strikethroughStyle] = value.rawValue
+            }
+            if let value = color {
+                attributes[.strikethroughColor] = value
+            }
             return attributes
         }
     }

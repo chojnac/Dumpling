@@ -10,7 +10,9 @@ import Foundation
 
 extension Markdown {
     public struct FragmentsConfig {
+        /// Inline elements, order in this array defines precedence
         public let inline: [AnyMarkdownInlineFragment]
+        /// Block elements, order in this array defines precedence (first is winning)
         public let block: [AnyMarkdownBlockFragment]
 
         public init(inline: [AnyMarkdownInlineFragment], block: [AnyMarkdownBlockFragment]) {
@@ -78,10 +80,11 @@ extension Markdown.FragmentsConfig {
                 EnclosedInlineFragment(id: "em", str: "_").any()
             ],
             block: [
+                HorizontalLineBlockFragment().any(), // take precedence over list
                 HeaderBlockFragment().any(),
                 ListBlockFragment().any(),
                 CodeFenceBlockFragment().any(),
-                ParaBlockFragment().any()
+                ParaBlockFragment().any(),
             ]
         ),
         .base

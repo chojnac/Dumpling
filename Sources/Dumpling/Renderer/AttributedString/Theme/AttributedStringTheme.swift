@@ -31,57 +31,38 @@ open class AttributedStringTheme {
 
     public required init(baseFont: Font, color: Color) {
         styles = [
-            .document: compose(.font(baseFont), .foregroundColor(color), .defaultParagraph()),
+            .document: compose(
+                .font(baseFont),
+                .foregroundColor(color),
+                .defaultParagraph()
+            ),
         ]
-        #if canImport(AppKit)
-        let monospaceFont = NSFont(name: "Menlo-Regular", size: 13)!
-        let inlineCodeStyle = compose(
-            StringStyle.font(monospaceFont),
-            StringStyle.foregroundColor(Color(red: 0.90, green: 0.20, blue: 0.40, alpha: 1.0)),
-            StringStyle.backgroundColor(Color(red: 0.85, green: 0.85, blue: 0.85, alpha: 1.0))
-        )
-        #else
-        let inlineCodeStyle = compose(
-            StringStyle.font(.monospacedDigitSystemFont(ofSize: 17, weight: .regular)),
-            StringStyle.foregroundColor(Color(red: 0.90, green: 0.20, blue: 0.40, alpha: 1.0)),
-            StringStyle.backgroundColor(Color(red: 0.85, green: 0.85, blue: 0.85, alpha: 1.0))
-        )
-        #endif
         
-        let blockCodeParagraph = StringStyle {
-            let paragraphStyle = NSMutableParagraphStyle()
-            paragraphStyle.firstLineHeadIndent = 0
-            paragraphStyle.headIndent = 0
-            paragraphStyle.paragraphSpacing = 0
-            paragraphStyle.paragraphSpacingBefore = 0
-            var attributes = $0
-            attributes[.paragraphStyle] = paragraphStyle
-            return attributes
-        }
-
         addStyle(contentOf: [
-            (key: StyleKey.strong, value: StringStyle.traits([.bold])),
-            (key: StyleKey.em, value: StringStyle.traits([.italic])),
-            (key: StyleKey.code, value: inlineCodeStyle),
-            (key: StyleKey.codeBlock, value: compose(inlineCodeStyle, blockCodeParagraph)),
+            (key: .strong, value: StringStyle.traits([.bold])),
+            (key: .em, value: StringStyle.traits([.italic])),
+            (key: .code, value: Helpers.inlineCodeStyle()),
+            (key: .codeBlock, value: compose(Helpers.inlineCodeStyle(), Helpers.blockCodeStyle())),
+            (key: .hr, value: StringStyle.strikethrough(style: .single, color: .gray))
         ])
+
         #if canImport(AppKit)
         addStyle(contentOf: [
-            (key: StyleKey.h1, value: StringStyle.font(.boldSystemFont(ofSize: 26))),
-            (key: StyleKey.h2, value: StringStyle.font(.boldSystemFont(ofSize: 22))),
-            (key: StyleKey.h3, value: StringStyle.font(.boldSystemFont(ofSize: 17))),
-            (key: StyleKey.h4, value: StringStyle.font(.boldSystemFont(ofSize: 15))),
-            (key: StyleKey.h5, value: StringStyle.font(.boldSystemFont(ofSize: 13))),
-            (key: StyleKey.h6, value: StringStyle.font(.boldSystemFont(ofSize: 13))),
+            (key: .h1, value: Helpers.headerStyle(font: .boldSystemFont(ofSize: 26))),
+            (key: .h2, value: Helpers.headerStyle(font: .boldSystemFont(ofSize: 22))),
+            (key: .h3, value: Helpers.headerStyle(font: .boldSystemFont(ofSize: 17))),
+            (key: .h4, value: Helpers.headerStyle(font: .boldSystemFont(ofSize: 15))),
+            (key: .h5, value: Helpers.headerStyle(font: .boldSystemFont(ofSize: 13))),
+            (key: .h6, value: Helpers.headerStyle(font: .boldSystemFont(ofSize: 13))),
         ])
         #else
         addStyle(contentOf: [
-            (key: StyleKey.h1, value: StringStyle.font(.boldSystemFont(ofSize: 34))),
-            (key: StyleKey.h2, value: StringStyle.font(.preferredFont(forTextStyle: .title1))),
-            (key: StyleKey.h3, value: StringStyle.font(.preferredFont(forTextStyle: .title2))),
-            (key: StyleKey.h4, value: StringStyle.font(.preferredFont(forTextStyle: .title3))),
-            (key: StyleKey.h5, value: StringStyle.font(.preferredFont(forTextStyle: .headline))),
-            (key: StyleKey.h6, value: StringStyle.font(.preferredFont(forTextStyle: .headline))),
+            (key: .h1, value: Helpers.headerStyle(font: .boldSystemFont(ofSize: 34))),
+            (key: .h2, value: Helpers.headerStyle(forTextStyle: .title1)),
+            (key: .h3, value: Helpers.headerStyle(forTextStyle: .title2)),
+            (key: .h4, value: Helpers.headerStyle(forTextStyle: .title3)),
+            (key: .h5, value: Helpers.headerStyle(forTextStyle: .headline)),
+            (key: .h6, value: Helpers.headerStyle(forTextStyle: .headline)),
         ])
         #endif
     }
@@ -117,5 +98,7 @@ extension AttributedStringTheme.StyleKey {
     public static let h4 = Self("h4")
     public static let h5 = Self("h5")
     public static let h6 = Self("h6")
+
+    public static let hr = Self("hr")
 }
 #endif

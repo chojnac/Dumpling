@@ -18,7 +18,7 @@ final class AttributedStringRendererTests: XCTestCase {
     func testText() {
         let root = Markdown().parse("**Lorem** ipsum")
         let result = renderer.render(root)
-        XCTAssertEqual(result.string, "Lorem ipsum\n")
+        XCTAssertEqual(result.string, "Lorem ipsum\n\n")
     }
 
 }
