@@ -170,3 +170,12 @@ public struct NothingNodeHTMLRenderFragment: HTMLRenderFragment {
         return nil
     }
 }
+
+public struct HorizontalLineNodeHTMLRenderFragment: HTMLRenderFragment {
+    public func render(
+        _ node: AST.HorizontalLineNode,
+        renderer: HTMLContentRenderer
+    ) -> String? {
+        return "<hr/>\n"
+    }
+}

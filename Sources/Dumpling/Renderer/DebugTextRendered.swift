@@ -40,6 +40,8 @@ public struct DebugTextRenderer: Renderer {
             render(node: element, chunks: &chunks)
         case is AST.NewLineNode:
             chunks.append("⏎")
+        case is AST.HorizontalLineNode:
+            chunks.append("<hr>")
         case is AST.SpaceNode:
             chunks.append("␣")
         default:

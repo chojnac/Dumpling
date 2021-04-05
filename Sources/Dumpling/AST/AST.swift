@@ -141,6 +141,12 @@ public struct AST {
         }
     }
 
+    public struct HorizontalLineNode: ASTNode {
+        public let children: [ASTNode] = []
+
+        public init() {}
+    }
+
     public struct RootNode: ASTNode {
         public let children: [ASTNode]
         public init(children: [ASTNode]) {

@@ -33,6 +33,7 @@ public class HTMLRenderer: Renderer {
             AST.ListNode.typeName: ListNodeHTMLRenderFragment().any(),
             AST.LinkNode.typeName: LinkNodeHTMLRenderFragment().any(),
             AST.CodeNode.typeName: CodeNodeHTMLRenderFragment().any(),
+            AST.HorizontalLineNode.typeName: HorizontalLineNodeHTMLRenderFragment().any(),
         ]
 
         contentRenderer = ContentRenderer(renderer: self)
