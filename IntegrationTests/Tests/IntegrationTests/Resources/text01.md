@@ -9,6 +9,15 @@
 ##### Header 5
 ###### Header 6
 
+Horizontal lines (Thematic breaks)
+
+***
+---
+___
+* * *   *
+-----------------
+
+
 * List
   - List
 + List

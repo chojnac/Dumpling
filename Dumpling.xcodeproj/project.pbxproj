@@ -67,6 +67,7 @@
 		0E1167DE261B2A9800BB3B53 /* HorizontalLineBlockFragment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E1167D1261B253F00BB3B53 /* HorizontalLineBlockFragment.swift */; };
 		0E1167E5261B2A9D00BB3B53 /* TestCase_HorizontalLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E1167D5261B29DF00BB3B53 /* TestCase_HorizontalLine.swift */; };
 		0E1167EE261B2C3400BB3B53 /* ParserTests_HorizontalLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E1167E8261B2BDD00BB3B53 /* ParserTests_HorizontalLine.swift */; };
+		0E1167F2261B383A00BB3B53 /* AttributedStringTheme+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E1167F1261B383A00BB3B53 /* AttributedStringTheme+Helpers.swift */; };
 		0E19C95925F9357100915D8A /* Dumpling.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E249D392392E2FF00699DC0 /* Dumpling.framework */; };
 		0E19C95A25F9357100915D8A /* Dumpling.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0E249D392392E2FF00699DC0 /* Dumpling.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0E19C97725F935E200915D8A /* Dumpling.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E249D392392E2FF00699DC0 /* Dumpling.framework */; };
@@ -219,6 +220,7 @@
 		0E1167D1261B253F00BB3B53 /* HorizontalLineBlockFragment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalLineBlockFragment.swift; sourceTree = "<group>"; };
 		0E1167D5261B29DF00BB3B53 /* TestCase_HorizontalLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCase_HorizontalLine.swift; sourceTree = "<group>"; };
 		0E1167E8261B2BDD00BB3B53 /* ParserTests_HorizontalLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParserTests_HorizontalLine.swift; sourceTree = "<group>"; };
+		0E1167F1261B383A00BB3B53 /* AttributedStringTheme+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AttributedStringTheme+Helpers.swift"; sourceTree = "<group>"; };
 		0E19C92125F9301800915D8A /* Example-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Example-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0E19C94325F9340000915D8A /* Example-AppKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Example-AppKit.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0E249D392392E2FF00699DC0 /* Dumpling.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Dumpling.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -564,6 +566,7 @@
 			isa = PBXGroup;
 			children = (
 				0E76D0922606A74200821BB3 /* AttributedStringTheme.swift */,
+				0E1167F1261B383A00BB3B53 /* AttributedStringTheme+Helpers.swift */,
 				0E76D0B12607C0FF00821BB3 /* AttributedStringTheme+Default.swift */,
 			);
 			path = Theme;
@@ -875,6 +878,7 @@
 				0E0EAD5D2602736000EED294 /* Parser+asNode.swift in Sources */,
 				0E76D097260758D900821BB3 /* StringStyle.swift in Sources */,
 				0E1167CE261B245D00BB3B53 /* HorizontalLineNodeRenderFragment.swift in Sources */,
+				0E1167F2261B383A00BB3B53 /* AttributedStringTheme+Helpers.swift in Sources */,
 				0E0EAD432602736000EED294 /* Parsers+zip.swift in Sources */,
 				0E0EAD442602736000EED294 /* Parsers.swift in Sources */,
 				0EEBD48E260F3AE000D130CC /* NewLineInlineFragment.swift in Sources */,

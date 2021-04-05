@@ -25,8 +25,7 @@ Markdown: Syntax</h1>
 Note:</strong>
 
  This document is itself written using Markdown; youcan <a href="/projects/markdown/syntax.text">see the source for it by adding &apos;.text&apos; to the URL</a>.</p>
-<p>
-----</p>
+<hr/>
 <h2>
 Overview</h2>
 

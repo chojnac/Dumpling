@@ -69,11 +69,10 @@ public struct ParagraphNodeRenderFragment: AttributedStringRenderFragment {
         context: AttributedStringRenderer.Context,
         renderer: AttributedStringContentRenderer
     ) -> NSAttributedString? {
-        let key = AttributedStringTheme.StyleKey.p
-        let attributes = context.attributes(forKey: key)
+        let attributes = context.attributes(forKey: .p)
         let string = NSMutableAttributedString()
         string.append(renderer.render(node.children, context: context.with(attributes: attributes)))
-        string.append(NSAttributedString(string: "\n", attributes: attributes))
+        string.append(NSAttributedString(string: "\n\n", attributes: attributes))
         return string
     }
 }

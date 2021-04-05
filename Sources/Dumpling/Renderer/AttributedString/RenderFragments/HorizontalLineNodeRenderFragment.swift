@@ -20,12 +20,16 @@ public struct HorizontalLineNodeRenderFragment: AttributedStringRenderFragment {
         context: AttributedStringRenderer.Context,
         renderer: AttributedStringContentRenderer
     ) -> NSAttributedString? {
+        let attributes = context.theme
+            .style(forKey: .hr)
+            .apply([ // default values
+                    .strikethroughStyle: NSUnderlineStyle.single,
+                    .strikethroughColor: Color.gray
+            ])
+
         return NSAttributedString(
-            string: "\n\r\u{00A0} \u{0009} \u{00A0}\n\n",
-            attributes: [
-                .strikethroughStyle: NSUnderlineStyle.single.rawValue,
-                .strikethroughColor: Color.gray
-            ]
+            string: "\u{00A0} \u{0009} \u{00A0}\n\n",
+            attributes: attributes
         )
     }
 }
