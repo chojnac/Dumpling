@@ -15,10 +15,10 @@ public struct StyleNodeHTMLRenderFragment: HTMLRenderFragment {
     ) -> String? {
         let tag = node.id
         var chunks = [String]()
-        chunks.append("<\(tag)>\n")
+        chunks.append("<\(tag)>")
         let content = renderer.render(node.children)
         chunks.append(content)
-        chunks.append("</\(tag)>\n\n")
+        chunks.append("</\(tag)>")
         return chunks.joined()
     }
 }
@@ -30,10 +30,10 @@ public struct HeaderNodeHTMLRenderFragment: HTMLRenderFragment {
     ) -> String? {
         let tag = "h\(node.size)"
         var chunks = [String]()
-        chunks.append("<\(tag)>\n")
+        chunks.append("\n<\(tag)>")
         let content = renderer.render(node.children)
         chunks.append(content)
-        chunks.append("</\(tag)>\n\n")
+        chunks.append("</\(tag)>\n")
         return chunks.joined()
     }
 }
@@ -87,7 +87,7 @@ public struct ParagraphHTMLNodeRenderFragment: HTMLRenderFragment {
         renderer: HTMLContentRenderer
     ) -> String? {
         var chunks = [String]()
-        chunks.append("<p>\n")
+        chunks.append("\n<p>")
         let content = renderer.render(node.children)
         chunks.append(content)
         chunks.append("</p>\n")
@@ -111,7 +111,7 @@ public struct LinkNodeHTMLRenderFragment: HTMLRenderFragment {
         case let .inline(link):
             chunks.append(" href=\"\(link)\"")
         case let .reference(ref):
-            chunks.append(" ref=\"\(ref)\"")
+            chunks.append(" href=\"\(ref)\"")
         }
 
         chunks.append(">")
@@ -127,12 +127,12 @@ public struct CodeNodeHTMLRenderFragment: HTMLRenderFragment {
         renderer: HTMLContentRenderer
     ) -> String? {
         var chunks = [String]()
-        node.isBlock ? chunks.append("<pre>") : nil
+        node.isBlock ? chunks.append("\n<pre>") : nil
         chunks.append("<code")
         chunks.append(">")
         chunks.append(renderer.render(node.children))
         chunks.append("</code>")
-        node.isBlock ? chunks.append("</pre>") : nil
+        node.isBlock ? chunks.append("</pre>\n") : nil
         return chunks.joined()
     }
 }
@@ -151,13 +151,24 @@ public struct ListNodeHTMLRenderFragment: HTMLRenderFragment {
             tagName = "ol"
         }
         var chunks = [String]()
+        if node.level == 0 {
+            chunks.append("\n")
+        }
+        chunks.append(String(repeating: "  ", count: node.level))
         chunks.append("<\(tagName)>")
         for listElementNode in node.children where listElementNode is AST.ListElementNode {
+            chunks.append("\n")
+            chunks.append(String(repeating: "  ", count: node.level + 1))
             chunks.append("<li>")
             chunks.append(renderer.render(listElementNode.children))
-            chunks.append("</li>\n")
+            chunks.append("</li>")
         }
+        chunks.append("\n")
+        chunks.append(String(repeating: "  ", count: node.level))
         chunks.append("</\(tagName)>")
+        if node.level == 0 {
+            chunks.append("\n")
+        }
         return chunks.joined()
     }
 }
@@ -176,6 +187,6 @@ public struct HorizontalLineNodeHTMLRenderFragment: HTMLRenderFragment {
         _ node: AST.HorizontalLineNode,
         renderer: HTMLContentRenderer
     ) -> String? {
-        return "<hr/>\n"
+        return "\n<hr/>\n"
     }
 }

@@ -1,51 +1,44 @@
-<p>
-<em>
-italic</em>
 
- or <em>
-italics</em>
+<p><em>italic</em> or <em>italics</em> <strong>bold</strong> or <strong>bold</strong> <s>strikethrough</s></p>
 
- <strong>
-bold</strong>
+<h1>Header 1</h1>
 
- or <strong>
-bold</strong>
+<h2>Header 2</h2>
 
- <s>
-strikethrough</s>
+<h3>Header 3</h3>
 
-</p>
-<h1>
-Header 1</h1>
+<h4>Header 4</h4>
 
-<h2>
-Header 2</h2>
+<h5>Header 5</h5>
 
-<h3>
-Header 3</h3>
+<h6>Header 6</h6>
 
-<h4>
-Header 4</h4>
+<p>Horizontal lines (Thematic breaks)</p>
 
-<h5>
-Header 5</h5>
-
-<h6>
-Header 6</h6>
-
-<p>
-Horizontal lines (Thematic breaks)</p>
 <hr/>
+
 <hr/>
+
 <hr/>
+
 <hr/>
+
 <hr/>
-<ul><li>List<ul><li>List</li>
-</ul></li>
-<li>List</li>
-</ul><ol><li>Ordered </li>
-<li>Lists</li>
-</ol><p>
-Inline <code>code</code> or </p>
-<pre><code>block code</code></pre><p>
-<a href="http://github.com/chojnac/">Links</a></p>
+
+<ul>
+  <li>List  <ul>
+    <li>List</li>
+  </ul></li>
+  <li>List</li>
+</ul>
+
+<ol>
+  <li>Ordered </li>
+  <li>Lists</li>
+</ol>
+
+<p>Inline <code>code</code> or </p>
+
+<pre><code>block code</code></pre>
+
+<p><a href="http://github.com/chojnac/">Links</a></p>
