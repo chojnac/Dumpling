@@ -52,8 +52,8 @@ struct FillTheGapNodeRenderFragment: AttributedStringRenderFragment {
 }
 
 let config = zip(
-    Markdown.FragmentsConfig.default,
-    Markdown.FragmentsConfig(inline: [FillTheGapInlineFragment().any()], block: [])
+    Markdown.FragmentsConfig(inline: [FillTheGapInlineFragment().any()], block: []),
+    Markdown.FragmentsConfig.default
 )
 let markdown = Markdown(config)
 

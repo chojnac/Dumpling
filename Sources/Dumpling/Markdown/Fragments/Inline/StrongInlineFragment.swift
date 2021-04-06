@@ -7,3 +7,22 @@
 //
 
 import Foundation
+
+public struct StrongInlineFragment: MarkdownInlineFragment {
+    let parser1: EnclosedInlineFragment
+    let parser2: EnclosedInlineFragment
+
+    public var identifier: String = "strong"
+
+    public init() {
+        parser1 = EnclosedInlineFragment(id: identifier, str: "**")
+        parser2 = EnclosedInlineFragment(id: identifier, str: "__")
+    }
+
+    public func build(markdown: MarkdownType) -> Parser<AST.StyleNode> {
+        return Parsers.oneOf(
+            parser1.build(markdown: markdown),
+            parser2.build(markdown: markdown)
+        )
+    }
+}

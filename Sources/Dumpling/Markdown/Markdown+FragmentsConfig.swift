@@ -73,11 +73,9 @@ extension Markdown.FragmentsConfig {
             inline: [
                 CodeSpanInlineFragment().any(),
                 LinkInlineFragment().any(),
-                EnclosedInlineFragment(id: "s", str: "~~").any(),
-                EnclosedInlineFragment(id: "strong", str: "**").any(),
-                EnclosedInlineFragment(id: "strong", str: "__").any(),
-                EnclosedInlineFragment(id: "em", str: "*").any(),
-                EnclosedInlineFragment(id: "em", str: "_").any()
+                StrikethroughInlineFragment().any(),
+                StrongInlineFragment().any(),
+                EmInlineFragment().any(),            
             ],
             block: [
                 HorizontalLineBlockFragment().any(), // take precedence over list

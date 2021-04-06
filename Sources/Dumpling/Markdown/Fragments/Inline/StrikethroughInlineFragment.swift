@@ -7,3 +7,17 @@
 //
 
 import Foundation
+
+public struct StrikethroughInlineFragment: MarkdownInlineFragment {
+    let parser: EnclosedInlineFragment
+
+    public var identifier: String = "s"
+
+    public init() {
+        parser = EnclosedInlineFragment(id: identifier, str: "~~")
+    }
+
+    public func build(markdown: MarkdownType) -> Parser<AST.StyleNode> {
+        return parser.build(markdown: markdown)
+    }
+}
