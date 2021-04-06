@@ -11,6 +11,8 @@ import Foundation
 public struct LinkInlineFragment: MarkdownInlineFragment {
     public let identifier: String = "link"
 
+    public init() {}
+    
     public func build(markdown: MarkdownType) -> Parser<AST.LinkNode> {
         Parsers.zip(
             Parsers.minMax(parser: Parsers.one(character: "!"), min: 0, max: 1),

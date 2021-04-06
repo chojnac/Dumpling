@@ -10,6 +10,7 @@ import Foundation
 
 public struct EOFBlockFragment: MarkdownBlockFragment {
     public let identifier: String = "eof"
+    
     public func build(markdown: MarkdownType) -> Parser<AST.EOFNode> {
         Parsers.zip(
             Parsers.oneOf(

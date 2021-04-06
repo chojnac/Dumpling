@@ -13,6 +13,8 @@ public struct ListBlockFragment: MarkdownBlockFragment {
     static let indicator = CharacterSet(charactersIn: "*+-")
     static let zeroOrMax3Spaces = Parsers.minMax(parser: Parsers.space, min: 0, max: 3).map(\.count)
 
+    public init() {}
+    
     public func build(markdown: MarkdownType) -> Parser<AST.ListNode> {
         Self.list(level: 0, identCount: 0, markdown: markdown, parentsOpenings: [])
     }

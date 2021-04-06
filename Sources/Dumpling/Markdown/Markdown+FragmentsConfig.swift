@@ -60,6 +60,7 @@ public func zip(_ lhs: Markdown.FragmentsConfig, _ rhs: Markdown.FragmentsConfig
 extension Markdown.FragmentsConfig {
     public static let base: Self = .init(
         inline: [
+            EscapeInlineFragment().any(),
             SpaceInlineFragment().any(),
             NewLineInlineFragment().any()
         ],
@@ -70,7 +71,6 @@ extension Markdown.FragmentsConfig {
     public static let `default`: Self = zip(
         .init(
             inline: [
-                EscapeInlineFragment().any(),
                 CodeSpanInlineFragment().any(),
                 LinkInlineFragment().any(),
                 EnclosedInlineFragment(id: "s", str: "~~").any(),

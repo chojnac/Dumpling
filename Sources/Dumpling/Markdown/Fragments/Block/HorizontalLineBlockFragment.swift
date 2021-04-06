@@ -11,6 +11,8 @@ import Foundation
 public struct HorizontalLineBlockFragment: MarkdownBlockFragment {
     public let identifier: String = "para"
 
+    public init() {}
+    
     public func build(markdown: MarkdownType) -> Parser<AST.HorizontalLineNode> {
 
         let line = Parsers.oneOf(

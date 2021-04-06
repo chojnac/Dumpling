@@ -12,6 +12,8 @@ public struct HeaderBlockFragment: MarkdownBlockFragment {
     public let identifier: String = "header"
     let maxLevel = 6
 
+    public init() {}
+
     public func build(markdown: MarkdownType) -> Parser<AST.HeaderNode> {
         let start: Parser<Int> = Parsers.zip(
             Parsers.oneOrMany(Parsers.one(character: "#")),

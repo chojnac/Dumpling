@@ -10,6 +10,8 @@ import Foundation
 
 public struct CodeFenceBlockFragment: MarkdownBlockFragment {
     public let identifier: String = "codeFenc"
+
+    public init() {}
     
     public func build(markdown: MarkdownType) -> Parser<AST.CodeNode> {
         let codeParamsCharacterSet = CharacterSet.alphanumerics.union(CharacterSet.whitespaces)

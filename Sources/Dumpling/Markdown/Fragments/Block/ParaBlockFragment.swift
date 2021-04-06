@@ -10,6 +10,8 @@ import Foundation
 
 public struct ParaBlockFragment: MarkdownBlockFragment {
     public let identifier: String = "para"
+
+    public init() {}
     
     public func build(markdown: MarkdownType) -> Parser<AST.ParagraphNode> {
         return Parsers.zip(

@@ -11,6 +11,8 @@ import Foundation
 public struct CodeSpanInlineFragment: MarkdownInlineFragment {
     public let identifier: String = "codeSpan"
 
+    public init() {}
+
     public func build(markdown: MarkdownType) -> Parser<AST.CodeNode> {
         let open = Parsers.oneOrMany(Parsers.one(character: "`"))
 
