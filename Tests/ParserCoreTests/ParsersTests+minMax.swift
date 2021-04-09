@@ -1,5 +1,5 @@
 //
-//  LocalParsersTests+minMax.swift
+//  ParsersTests+minMax.swift
 //  DumplingTests
 //
 //  Created by Wojciech Chojnacki on 12/03/2021.
@@ -10,7 +10,7 @@ import Foundation
 import XCTest
 import Dumpling
 
-final class LocalParsersTests_minMax: XCTestCase {
+final class ParsersTests_minMax: XCTestCase {
 
     func test_min_match() {
         var input = Substring("aaaa ")

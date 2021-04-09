@@ -10,7 +10,7 @@ import Foundation
 
 extension Parsers {
     /// Single new line element
-    public static let newLine: Parser<Void> = Parsers.starts(with: "\n")
+    public static let newLine: Parser<Void> = Parsers.one(character: "\n")
         .map { _ in () }
         .rename("newLine")
 
@@ -41,71 +41,27 @@ extension Parsers {
         return ch
     }
 
+    public static let singleEmptyLine = Parsers.oneOf(
+            Parsers.zip(Parsers.zeroOrManySpaces, Parsers.newLine),
+            Parsers.zip(Parsers.oneOrManySpaces, Parsers.isDocEnd)
+    )
+
     /// Remove empty lines.
     /// The parser returns nil if there are no newlines removed or a number of lines removed
-    public static let emptyLines = Parser<Int>("emptyLines") { reader in
-        var origin = reader
+    public static let emptyLines = Parsers
+        .minMax(parser: singleEmptyLine, min: 2)
+        .map({$0.count - 1})
+        .rename("emptyLines")
 
-        guard reader.popFirst() == "\n" else {
-            reader = origin
-            return nil
-        }
+    public static let oneOrManySpaces = Parsers
+        .minMax(parser: Parsers.space, min: 1)
+        .map(\.count)
+        .rename("oneOrMoreSpaces")
 
-        var lineStart = reader
-        var emptyLinesCount = 0
-        repeat {
-            guard let ch = reader.popFirst() else {
-                return emptyLinesCount == 0 ? nil : emptyLinesCount + 1
-            }
-
-            if ch == " " || ch == "\t" {
-                // still good, space allowed, next char please
-                continue
-            } else if ch == "\n" {
-                // another line
-                emptyLinesCount += 1
-                lineStart = reader
-            } else {
-                // only spaces and new line allowed
-                if emptyLinesCount == 0 {
-                    reader = origin
-                    return nil
-                }
-                reader = lineStart
-                return emptyLinesCount
-            }
-        } while true
-    }
-
-    public static let oneOrManySpaces = Parser<Int>("oneOrMoreSpaces") { reader in
-        var origin = reader
-
-        var spacesCount = 0
-        repeat {
-            let readerBeforeCheck = reader
-            guard let ch = reader.popFirst() else {
-                return spacesCount == 0 ? nil : spacesCount
-            }
-
-            if ch == " " {
-                // still good, space allowed, next char please
-                spacesCount += 1
-                continue
-            } else {
-                reader = readerBeforeCheck
-                if spacesCount == 0 {
-                    reader = origin
-                    return nil
-                }
-                return spacesCount
-            }
-        } while true
-    }
-
-    public static let zeroOrManySpaces = Parsers.oneOf(
-        Parsers.oneOrManySpaces,
-        .just(0)
-    ).rename("zeroOrManySpaces")
+    public static let zeroOrManySpaces = Parsers
+        .minMax(parser: Parsers.space, min: 0)
+        .map(\.count)
+        .rename("zeroOrManySpaces")
 
     public static func zeroOrManyCharacters(inSet set: CharacterSet) -> Parser<String> {
         Parsers.oneOf(
@@ -131,85 +87,17 @@ extension Parsers {
         }
     }
 
-    public static func min(character: Character, min: Int = 1) -> Parser<Int> {
-        .init("minChacter:\(character)") { reader in
-            var count = 0
-            let origin = reader
-            repeat {
-                let oldReader = reader
-                guard let ch = reader.popFirst() else {
-                    if count >= min {
-                        return count
-                    }
-                    reader = origin
-                    return nil
-                }
-                if ch == character {
-                    count += 1
-                    continue
-                } else {
-                    if count < min {
-                        reader = origin
-                        return nil
-                    } else {
-                        reader = oldReader
-                        return count
-                    }
-                }
-            } while true
-
-        }
-    }
-
-    public static func minMax<T>(parser: Parser<T>, min: UInt, max: UInt? = nil) -> Parser<[T]> {
-        if let max = max {
-            precondition(max >= min, "Max must be greather that min")
-        }
-        
-        return .init("MinMax[min=\(min)\(max.map({[",max=", String($0)].joined()}) ?? "")]") { reader in
-            var accumulator = [T]()
-            if max == 0 {
-                return accumulator
-            }
-            let origin = reader
-            repeat {
-                guard let result = parser.run(&reader) else {
-                    if accumulator.count >= min {
-                        return accumulator
-                    }
-                    reader = origin
-                    return nil
-                }
-
-                accumulator.append(result)
-
-                if let max = max {
-                    if accumulator.count == max {
-                        return accumulator
-                    }
-                }
-            } while true
-        }
+    public static func min(character: Character, min: UInt = 1) -> Parser<Int> {
+        return Parsers
+            .minMax(parser: Parsers.one(character: character), min: min)
+            .map(\.count)
+            .rename("minChacter(\(min)):\(character)")
     }
 
     /// One or many
     public static func oneOrMany<T>(_ parser: Parser<T>) -> Parser<[T]> {
-        .init("oneOrMany") { reader in
-            var results = [T]()
-
-            while !reader.isEmpty {
-                guard let result = parser.run(&reader) else {
-                    break
-                }
-
-                results.append(result)
-            }
-
-            guard !results.isEmpty else {
-                return nil
-            }
-            return results
-        }
+        Parsers.minMax(parser: parser, min: 1)
+            .rename("oneOrMany")
     }
 
     public static func starts(with possiblePrefix: String) -> Parser<String> {

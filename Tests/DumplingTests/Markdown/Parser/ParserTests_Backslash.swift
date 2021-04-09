@@ -10,32 +10,33 @@
 import XCTest
 
 final class ParserTests_Backslash: XCTestCase {
+    typealias TC = TestCase.Backslash
     var parser: Markdown!
 
     override func setUp() {
         parser = Markdown()
     }
 
-    func test_processor_simple_case01() {
-        let tc = TestCase.Backslash.case01
+    func test_case01() {
+        let tc = TC.case01
         let result = parser.parse(tc.text).debugString()
         XCTAssertEqual(result, tc.parsed)
     }
 
-    func test_processor_simple_case02() {
-        let tc = TestCase.Backslash.case02
+    func test_case02() {
+        let tc = TC.case02
         let result = parser.parse(tc.text).debugString()
         XCTAssertEqual(result, tc.parsed)
     }
 
-    func test_processor_simple_case03() {
-        let tc = TestCase.Backslash.case03
+    func test_case03() {
+        let tc = TC.case03
         let result = parser.parse(tc.text).debugString()
         XCTAssertEqual(result, tc.parsed)
     }
 
-    func test_processor_simple_case04() {
-        let tc = TestCase.Backslash.case04
+    func test_case04() {
+        let tc = TC.case04
         let result = parser.parse(tc.text).debugString()
         XCTAssertEqual(result, tc.parsed)
     }

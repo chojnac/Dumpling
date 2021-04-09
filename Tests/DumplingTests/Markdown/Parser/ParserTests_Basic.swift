@@ -16,7 +16,7 @@ final class ParserTests_Basic: XCTestCase {
         parser = Markdown()
     }
 
-    func test__simple_case01() {
+    func test_case01() {
         let tc = "Lorem \n\n ipsum"
         let result = parser.parse(tc).debugString()
         XCTAssertEqual(result, "<p>Lorem</p><p>ipsum</p>")

@@ -10,6 +10,7 @@
 import XCTest
 
 final class ParserTests_Strikethrough: XCTestCase {
+    typealias TC = TestCase.Strikethrough
     var parser: Markdown!
 
     override func setUp() {
@@ -17,19 +18,19 @@ final class ParserTests_Strikethrough: XCTestCase {
     }
 
     func test_processor_simple_case01() {
-        let tc = TestCase.Strikethrough.case01
+        let tc = TC.case01
         let result = parser.parse(tc.text).debugString()
         XCTAssertEqual(result, tc.parsed)
     }
 
     func test_processor_simple_case02() {
-        let tc = TestCase.Strikethrough.case02
+        let tc = TC.case02
         let result = parser.parse(tc.text).debugString()
         XCTAssertEqual(result, tc.parsed)
     }
 
     func test_processor_simple_case03() {
-        let tc = TestCase.Strikethrough.case03
+        let tc = TC.case03
         let result = parser.parse(tc.text).debugString()
         XCTAssertEqual(result, tc.parsed)
     }

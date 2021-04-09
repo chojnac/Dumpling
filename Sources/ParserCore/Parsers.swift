@@ -79,4 +79,35 @@ public enum Parsers {
             } while true
         }
     }
+
+    public static func minMax<P: ParserType>(parser: P, min: UInt, max: UInt? = nil) -> Parser<[P.Element]> {
+        if let max = max {
+            precondition(max >= min, "Max must be greather that min")
+        }
+
+        return .init("MinMax[min=\(min)\(max.map({[",max=", String($0)].joined()}) ?? "")]") { reader in
+            var accumulator = [P.Element]()
+            if max == 0 {
+                return accumulator
+            }
+            let origin = reader
+            repeat {
+                guard let result = parser.run(&reader) else {
+                    if accumulator.count >= min {
+                        return accumulator
+                    }
+                    reader = origin
+                    return nil
+                }
+
+                accumulator.append(result)
+
+                if let max = max {
+                    if accumulator.count == max {
+                        return accumulator
+                    }
+                }
+            } while true
+        }
+    }
 }

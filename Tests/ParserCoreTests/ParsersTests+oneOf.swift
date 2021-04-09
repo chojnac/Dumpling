@@ -1,5 +1,5 @@
 //
-//  ParsersCoreTests.swift
+//  Parsers_oneOf.swift
 //  DumplingTests
 //
 //  Created by Wojciech Chojnacki on 30/11/2019.
@@ -9,7 +9,7 @@
 import XCTest
 import Dumpling
 
-final class ParsersCoreTests: XCTestCase {
+final class Parsers_oneOf: XCTestCase {
     let testText = "Lorem ipsum"
     var input: Substring!
 

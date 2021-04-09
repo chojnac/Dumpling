@@ -10,49 +10,35 @@ import XCTest
 import Dumpling
 
 final class ParserTests_Header: XCTestCase {
+    typealias TC = TestCase.Header
     var parser: Markdown!
 
     override func setUp() {
         parser = Markdown()
     }
 
-    func testSimple1() throws {
-        let reader = "# Header 1 "
-
-        let result = parser.parse(reader).debugString()
-        XCTAssertEqual(result, "<h1>Header␣1␣</h1>")
+    func test_case01() {
+        let tc = TC.case01
+        let result = parser.parse(tc.text).debugString()
+        XCTAssertEqual(result, tc.parsed)
     }
 
-    func testSimple2() throws {
-        let reader = " # Header 1 \n\n test"
-
-        let result = parser.parse(reader).debugString()
-        XCTAssertEqual(result, "<h1>Header␣1␣</h1><p>␣test</p>")
+    func test_case02() {
+        let tc = TC.case02
+        let result = parser.parse(tc.text).debugString()
+        XCTAssertEqual(result, tc.parsed)
     }
 
-    func testEmptyLinesStart() throws {
-        let reader = "  \n\n # Header 1 \n test"
-
-        let result = parser.parse(reader).debugString()
-        XCTAssertEqual(result, "<h1>Header␣1␣</h1><p>␣test</p>")
+    func test_case03() {
+        let tc = TC.case03
+        let result = parser.parse(tc.text).debugString()
+        XCTAssertEqual(result, tc.parsed)
     }
 
-    func testAdvence() throws {
-        let reader = """
-
-        ## Span Elements
-
-        ### Links
-
-        Markdown supports two style of links: *inline* and *reference*.
-
-        In both styles, the link text is delimited by [square brackets].
-
-"""
-
-        let result = parser.parse(reader).debugString()
-        // swiftlint:disable:next line_length
-        XCTAssertEqual(result, "<h2>Span␣Elements</h2><h3>Links</h3><p>␣Markdown␣supports␣two␣style␣of␣links:␣<em>inline</em>␣and␣<em>reference</em>.</p><p>In␣both␣styles,␣the␣link␣text␣is␣delimited␣by␣[square␣brackets].</p>")
+    func test_case04() {
+        let tc = TC.case04
+        let result = parser.parse(tc.text).debugString()
+        XCTAssertEqual(result, tc.parsed)
     }
 
 }

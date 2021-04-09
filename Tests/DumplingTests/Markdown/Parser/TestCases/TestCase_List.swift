@@ -28,7 +28,7 @@ extension TestCase {
 
         static let case03 = TestCase(
             text: " * Lorem **bold \n message** \n * Ipsum *italic \n message* \n\n Paragraph",
-            parsed: "<ul l=0><li>Lorem␣<strong>bold␣⏎␣message</strong>␣</li><li>Ipsum␣<em>italic␣⏎␣message</em>␣</li></ul><p>␣Paragraph</p>"
+            parsed: "<ul l=0><li>Lorem␣<strong>bold␣⏎␣message</strong>␣</li><li>Ipsum␣<em>italic␣⏎␣message</em></li></ul><p>Paragraph</p>"
         )
         static let case04 = TestCase(
             text: """

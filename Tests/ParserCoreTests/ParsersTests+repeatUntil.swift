@@ -1,5 +1,5 @@
 //
-//  ParsersCoreTests+repeatUntil.swift
+//  ParsersTests+repeatUntil.swift
 //  DumplingTests
 //
 //  Created by Wojciech Chojnacki on 27/03/2021.
@@ -9,7 +9,7 @@
 import XCTest
 import Dumpling
 
-final class ParsersCoreTests_repeatUntil: XCTestCase {
+final class ParsersTests_repeatUntil: XCTestCase {
 
     func test_repeatUntil_match() {
         var input = Substring("Lorem ipsum")

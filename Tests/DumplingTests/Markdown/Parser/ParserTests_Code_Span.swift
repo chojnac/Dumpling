@@ -10,62 +10,63 @@
 import XCTest
 
 final class ParserTests_Code_Span: XCTestCase {
+    typealias TC = TestCase.CodeSpan
     var parser: Markdown!
 
     override func setUp() {
         parser = Markdown()
     }
 
-    func test_processor_case01() {
-        let tc = TestCase.CodeSpan.case01
+    func test_case01() {
+        let tc = TC.case01
         let result = parser.parse(tc.text).debugString()
         XCTAssertEqual(result, tc.parsed)
     }
 
-    func test_processor_case02() {
-        let tc = TestCase.CodeSpan.case02
+    func test_case02() {
+        let tc = TC.case02
         let result = parser.parse(tc.text).debugString()
         XCTAssertEqual(result, tc.parsed)
     }
 
-    func test_processor_case03() {
-        let tc = TestCase.CodeSpan.case03
+    func test_case03() {
+        let tc = TC.case03
         let result = parser.parse(tc.text).debugString()
         XCTAssertEqual(result, tc.parsed)
     }
 
-    func test_processor_case04() {
-        let tc = TestCase.CodeSpan.case04
+    func test_case04() {
+        let tc = TC.case04
         let result = parser.parse(tc.text).debugString()
         XCTAssertEqual(result, tc.parsed)
     }
 
-    func test_processor_case05() {
-        let tc = TestCase.CodeSpan.case05
+    func test_case05() {
+        let tc = TC.case05
         let result = parser.parse(tc.text).debugString()
         XCTAssertEqual(result, tc.parsed)
     }
 
-    func test_processor_case06() {
-        let tc = TestCase.CodeSpan.case06
+    func test_case06() {
+        let tc = TC.case06
         let result = parser.parse(tc.text).debugString()
         XCTAssertEqual(result, tc.parsed)
     }
 
-    func test_processor_case07() {
-        let tc = TestCase.CodeSpan.case07
+    func test_case07() {
+        let tc = TC.case07
         let result = parser.parse(tc.text).debugString()
         XCTAssertEqual(result, tc.parsed)
     }
 
-    func test_processor_case08() {
-        let tc = TestCase.CodeSpan.case08
+    func test_case08() {
+        let tc = TC.case08
         let result = parser.parse(tc.text).debugString()
         XCTAssertEqual(result, tc.parsed)
     }
 
-    func test_processor_case09() {
-        let tc = TestCase.CodeSpan.case09
+    func test_case09() {
+        let tc = TC.case09
         let result = parser.parse(tc.text).debugString()
         XCTAssertEqual(result, tc.parsed)
     }
