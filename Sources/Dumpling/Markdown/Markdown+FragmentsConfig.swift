@@ -74,8 +74,7 @@ extension Markdown.FragmentsConfig {
                 CodeSpanInlineFragment().any(),
                 LinkInlineFragment().any(),
                 StrikethroughInlineFragment().any(),
-                StrongInlineFragment().any(),
-                EmInlineFragment().any(),            
+                EmphasisInlineFragment.instance().any(),
             ],
             block: [
                 HorizontalLineBlockFragment().any(), // take precedence over list

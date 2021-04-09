@@ -67,14 +67,13 @@
 		0E1167E5261B2A9D00BB3B53 /* TestCase_HorizontalLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E1167D5261B29DF00BB3B53 /* TestCase_HorizontalLine.swift */; };
 		0E1167EE261B2C3400BB3B53 /* ParserTests_HorizontalLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E1167E8261B2BDD00BB3B53 /* ParserTests_HorizontalLine.swift */; };
 		0E1167F2261B383A00BB3B53 /* AttributedStringTheme+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E1167F1261B383A00BB3B53 /* AttributedStringTheme+Helpers.swift */; };
-		0E1167FC261C41DD00BB3B53 /* StrongInlineFragment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E1167FB261C41DD00BB3B53 /* StrongInlineFragment.swift */; };
-		0E116800261C431A00BB3B53 /* EmInlineFragment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E1167FF261C431A00BB3B53 /* EmInlineFragment.swift */; };
 		0E116804261C43F100BB3B53 /* StrikethroughInlineFragment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E116803261C43F100BB3B53 /* StrikethroughInlineFragment.swift */; };
 		0E19C95925F9357100915D8A /* Dumpling.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E249D392392E2FF00699DC0 /* Dumpling.framework */; };
 		0E19C95A25F9357100915D8A /* Dumpling.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0E249D392392E2FF00699DC0 /* Dumpling.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0E19C97725F935E200915D8A /* Dumpling.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E249D392392E2FF00699DC0 /* Dumpling.framework */; };
 		0E19C97825F935E200915D8A /* Dumpling.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0E249D392392E2FF00699DC0 /* Dumpling.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0E249D562392E90A00699DC0 /* Dumpling.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E249D392392E2FF00699DC0 /* Dumpling.framework */; };
+		0E3288902623765200D8551C /* EmphasisInlineFragment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E32888F2623765200D8551C /* EmphasisInlineFragment.swift */; };
 		0E643C422620424900458672 /* TestCase_Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E643C412620424900458672 /* TestCase_Header.swift */; };
 		0E643C50262046C400458672 /* ParsersTests+minMax.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E643C4F262046C400458672 /* ParsersTests+minMax.swift */; };
 		0E76D055260277F600821BB3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E76D04E260277F600821BB3 /* ViewController.swift */; };
@@ -97,6 +96,7 @@
 		0E76D0EB2609EB9E00821BB3 /* AttributedStringRenderer+Context.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E76D0EA2609EB9E00821BB3 /* AttributedStringRenderer+Context.swift */; };
 		0E76D0FE260B36EC00821BB3 /* HTMLRenderFragment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E76D0FD260B36EC00821BB3 /* HTMLRenderFragment.swift */; };
 		0E76D104260B37A500821BB3 /* HTMLRenderFragments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E76D103260B37A500821BB3 /* HTMLRenderFragments.swift */; };
+		0E9C0D742621F8FC007FDD32 /* EmphasisInlineFragmentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9C0D732621F8FC007FDD32 /* EmphasisInlineFragmentTests.swift */; };
 		0EDD15B7260F733A0067E884 /* LocalParsersTests+stringUntil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EDD15B6260F733A0067E884 /* LocalParsersTests+stringUntil.swift */; };
 		0EDD15BD260F73B20067E884 /* LocalParsersTests+zeroOrManyCharacters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EDD15BC260F73B20067E884 /* LocalParsersTests+zeroOrManyCharacters.swift */; };
 		0EDD15C1260F73FB0067E884 /* LocalParsersTests+int.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EDD15C0260F73FB0067E884 /* LocalParsersTests+int.swift */; };
@@ -224,13 +224,12 @@
 		0E1167D5261B29DF00BB3B53 /* TestCase_HorizontalLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCase_HorizontalLine.swift; sourceTree = "<group>"; };
 		0E1167E8261B2BDD00BB3B53 /* ParserTests_HorizontalLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParserTests_HorizontalLine.swift; sourceTree = "<group>"; };
 		0E1167F1261B383A00BB3B53 /* AttributedStringTheme+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AttributedStringTheme+Helpers.swift"; sourceTree = "<group>"; };
-		0E1167FB261C41DD00BB3B53 /* StrongInlineFragment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrongInlineFragment.swift; sourceTree = "<group>"; };
-		0E1167FF261C431A00BB3B53 /* EmInlineFragment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmInlineFragment.swift; sourceTree = "<group>"; };
 		0E116803261C43F100BB3B53 /* StrikethroughInlineFragment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrikethroughInlineFragment.swift; sourceTree = "<group>"; };
 		0E19C92125F9301800915D8A /* Example-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Example-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0E19C94325F9340000915D8A /* Example-AppKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Example-AppKit.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0E249D392392E2FF00699DC0 /* Dumpling.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Dumpling.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0E249D512392E90A00699DC0 /* DumplingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DumplingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		0E32888F2623765200D8551C /* EmphasisInlineFragment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmphasisInlineFragment.swift; sourceTree = "<group>"; };
 		0E643C412620424900458672 /* TestCase_Header.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCase_Header.swift; sourceTree = "<group>"; };
 		0E643C4F262046C400458672 /* ParsersTests+minMax.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ParsersTests+minMax.swift"; sourceTree = "<group>"; };
 		0E76D04E260277F600821BB3 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -255,6 +254,7 @@
 		0E76D0EA2609EB9E00821BB3 /* AttributedStringRenderer+Context.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AttributedStringRenderer+Context.swift"; sourceTree = "<group>"; };
 		0E76D0FD260B36EC00821BB3 /* HTMLRenderFragment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTMLRenderFragment.swift; sourceTree = "<group>"; };
 		0E76D103260B37A500821BB3 /* HTMLRenderFragments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTMLRenderFragments.swift; sourceTree = "<group>"; };
+		0E9C0D732621F8FC007FDD32 /* EmphasisInlineFragmentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmphasisInlineFragmentTests.swift; sourceTree = "<group>"; };
 		0EDD15B6260F733A0067E884 /* LocalParsersTests+stringUntil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalParsersTests+stringUntil.swift"; sourceTree = "<group>"; };
 		0EDD15BC260F73B20067E884 /* LocalParsersTests+zeroOrManyCharacters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalParsersTests+zeroOrManyCharacters.swift"; sourceTree = "<group>"; };
 		0EDD15C0260F73FB0067E884 /* LocalParsersTests+int.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalParsersTests+int.swift"; sourceTree = "<group>"; };
@@ -444,6 +444,7 @@
 			children = (
 				0E0EAD7D2602737400EED294 /* LinkInlineFragmentTest.swift */,
 				0E0EAD7C2602737400EED294 /* ListBlockFragmentTests.swift */,
+				0E9C0D732621F8FC007FDD32 /* EmphasisInlineFragmentTests.swift */,
 			);
 			path = Fragments;
 			sourceTree = "<group>";
@@ -626,14 +627,13 @@
 			isa = PBXGroup;
 			children = (
 				0E0EAD322602736000EED294 /* CodeSpanInlineFragment.swift */,
-				0E1167FF261C431A00BB3B53 /* EmInlineFragment.swift */,
 				0E0EAD372602736000EED294 /* EnclosedInlineFragment.swift */,
 				0E0EAD342602736000EED294 /* EscapeFragment.swift */,
 				0E0EAD332602736000EED294 /* LinkInlineFragment.swift */,
 				0EEBD48D260F3AE000D130CC /* NewLineInlineFragment.swift */,
 				0EEBD489260F3A9000D130CC /* SpaceInlineFragment.swift */,
 				0E116803261C43F100BB3B53 /* StrikethroughInlineFragment.swift */,
-				0E1167FB261C41DD00BB3B53 /* StrongInlineFragment.swift */,
+				0E32888F2623765200D8551C /* EmphasisInlineFragment.swift */,
 			);
 			path = Inline;
 			sourceTree = "<group>";
@@ -891,11 +891,9 @@
 				0E0EAD5D2602736000EED294 /* Parser+asNode.swift in Sources */,
 				0E76D097260758D900821BB3 /* StringStyle.swift in Sources */,
 				0E1167CE261B245D00BB3B53 /* HorizontalLineNodeRenderFragment.swift in Sources */,
-				0E1167FC261C41DD00BB3B53 /* StrongInlineFragment.swift in Sources */,
 				0E1167F2261B383A00BB3B53 /* AttributedStringTheme+Helpers.swift in Sources */,
 				0E0EAD432602736000EED294 /* Parsers+zip.swift in Sources */,
 				0E0EAD442602736000EED294 /* Parsers.swift in Sources */,
-				0E116800261C431A00BB3B53 /* EmInlineFragment.swift in Sources */,
 				0EEBD48E260F3AE000D130CC /* NewLineInlineFragment.swift in Sources */,
 				0EEBD478260B5AE400D130CC /* AppKitExtensions.swift in Sources */,
 				0E76D08E2606A69D00821BB3 /* StringStyles+Helpers.swift in Sources */,
@@ -907,6 +905,7 @@
 				0E0EAD542602736000EED294 /* CodeSpanInlineFragment.swift in Sources */,
 				0E0EAD4E2602736000EED294 /* Renderer.swift in Sources */,
 				0E0EAD4A2602736000EED294 /* AST+HTMLRenderer.swift in Sources */,
+				0E3288902623765200D8551C /* EmphasisInlineFragment.swift in Sources */,
 				0E1167DE261B2A9800BB3B53 /* HorizontalLineBlockFragment.swift in Sources */,
 				0E76D0FE260B36EC00821BB3 /* HTMLRenderFragment.swift in Sources */,
 				0E76D0D82609E73400821BB3 /* AttributedStringRenderFragment.swift in Sources */,
@@ -964,6 +963,7 @@
 				0EDD15C1260F73FB0067E884 /* LocalParsersTests+int.swift in Sources */,
 				0E0EADCF2602743700EED294 /* ParserTests_Code_Span.swift in Sources */,
 				0E0EADD02602743700EED294 /* ParserTests_Strikethrough.swift in Sources */,
+				0E9C0D742621F8FC007FDD32 /* EmphasisInlineFragmentTests.swift in Sources */,
 				0E0EADCE2602743700EED294 /* ParserTests_Backslash.swift in Sources */,
 				0E0EADC82602743000EED294 /* HTMLRendererTests.swift in Sources */,
 				0EDD15B7260F733A0067E884 /* LocalParsersTests+stringUntil.swift in Sources */,

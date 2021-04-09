@@ -77,7 +77,7 @@
 
 <h2>This is a header.</h2>
 
-<p>&gt; &gt; 1. This is the first list item.&gt; 2. This is the second list item.&gt; &gt; Here&apos;s some example code:&gt; &gt; return shell<em>exec(&quot;echo $input | $markdown</em>script&quot;);</p>
+<p>&gt; &gt; 1. This is the first list item.&gt; 2. This is the second list item.&gt; &gt; Here&apos;s some example code:&gt; &gt; return shell_exec(&quot;echo $input | $markdown_script&quot;);</p>
 
 <p>Any decent text editor should make email-style quoting easy. Forexample, with BBEdit, you can make a selection and choose IncreaseQuote Level from the Text menu.</p>
 
