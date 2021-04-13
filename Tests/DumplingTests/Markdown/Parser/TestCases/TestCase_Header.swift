@@ -16,10 +16,10 @@ extension TestCase {
                                      parsed: "<h1>Header␣1␣</h1>")
 
         static let case02 = TestCase(text: " # Header 1 \n\n test",
-                                     parsed: "<h1>Header␣1␣</h1><p>␣test</p>")
+                                     parsed: "<h1>Header␣1</h1><p>␣test</p>")
 
         static let case03 = TestCase(text: "  \n\n # Header 1 \n test",
-                                     parsed: "<h1>Header␣1␣</h1><p>␣test</p>")
+                                     parsed: "<h1>Header␣1</h1><p>␣test</p>")
 
         static let case04 = TestCase(text: """
 

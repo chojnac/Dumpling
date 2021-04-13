@@ -21,6 +21,6 @@ extension TestCase {
                                      parsed: #"<p>\<em>lorem</em></p>"#)
 
         static let case04 = TestCase(text: "\\\n*lorem*",
-                                     parsed: #"<p>\⏎<em>lorem</em></p>"#)
+                                     parsed: #"<p>\⌟<em>lorem</em></p>"#)
     }
 }

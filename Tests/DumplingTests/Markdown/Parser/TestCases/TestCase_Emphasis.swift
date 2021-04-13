@@ -43,10 +43,10 @@ extension TestCase {
                                      parsed: "<p><em>lorem</em></p>")
 
         static let case11 = TestCase(text: "**\ntest",
-                                     parsed: "<p>**⏎test</p>")
+                                     parsed: "<p>**⌟test</p>")
 
         static let case12 = TestCase(text: "*lorem\n*",
-                                     parsed: #"<p>*lorem⏎*</p>"#)
+                                     parsed: #"<p>*lorem⌟*</p>"#)
 
         static let case13 = TestCase(text: "foo_bar_",
                                      parsed: #"<p>foo_bar_</p>"#)

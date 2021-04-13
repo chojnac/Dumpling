@@ -67,8 +67,12 @@ public struct AST {
     }
 
     public struct NewLineNode: ASTNode {
-        public var children = [ASTNode]()
-        public init() {}
+        public let children = [ASTNode]()
+        public let soft: Bool
+        
+        public init(soft: Bool) {
+            self.soft = soft
+        }
     }
 
     public struct EOFNode: ASTNode {

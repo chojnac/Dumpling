@@ -97,6 +97,8 @@
 		0E76D0FE260B36EC00821BB3 /* HTMLRenderFragment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E76D0FD260B36EC00821BB3 /* HTMLRenderFragment.swift */; };
 		0E76D104260B37A500821BB3 /* HTMLRenderFragments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E76D103260B37A500821BB3 /* HTMLRenderFragments.swift */; };
 		0E9C0D742621F8FC007FDD32 /* EmphasisInlineFragmentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9C0D732621F8FC007FDD32 /* EmphasisInlineFragmentTests.swift */; };
+		0EA8457926262E65007721B0 /* TestCase_NewLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA8457826262E65007721B0 /* TestCase_NewLine.swift */; };
+		0EA8457D26262EEE007721B0 /* ParserTests_NewLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA8457C26262EEE007721B0 /* ParserTests_NewLine.swift */; };
 		0EDD15B7260F733A0067E884 /* LocalParsersTests+stringUntil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EDD15B6260F733A0067E884 /* LocalParsersTests+stringUntil.swift */; };
 		0EDD15BD260F73B20067E884 /* LocalParsersTests+zeroOrManyCharacters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EDD15BC260F73B20067E884 /* LocalParsersTests+zeroOrManyCharacters.swift */; };
 		0EDD15C1260F73FB0067E884 /* LocalParsersTests+int.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EDD15C0260F73FB0067E884 /* LocalParsersTests+int.swift */; };
@@ -255,6 +257,8 @@
 		0E76D0FD260B36EC00821BB3 /* HTMLRenderFragment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTMLRenderFragment.swift; sourceTree = "<group>"; };
 		0E76D103260B37A500821BB3 /* HTMLRenderFragments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTMLRenderFragments.swift; sourceTree = "<group>"; };
 		0E9C0D732621F8FC007FDD32 /* EmphasisInlineFragmentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmphasisInlineFragmentTests.swift; sourceTree = "<group>"; };
+		0EA8457826262E65007721B0 /* TestCase_NewLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCase_NewLine.swift; sourceTree = "<group>"; };
+		0EA8457C26262EEE007721B0 /* ParserTests_NewLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParserTests_NewLine.swift; sourceTree = "<group>"; };
 		0EDD15B6260F733A0067E884 /* LocalParsersTests+stringUntil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalParsersTests+stringUntil.swift"; sourceTree = "<group>"; };
 		0EDD15BC260F73B20067E884 /* LocalParsersTests+zeroOrManyCharacters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalParsersTests+zeroOrManyCharacters.swift"; sourceTree = "<group>"; };
 		0EDD15C0260F73FB0067E884 /* LocalParsersTests+int.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LocalParsersTests+int.swift"; sourceTree = "<group>"; };
@@ -460,6 +464,7 @@
 				0E1167D5261B29DF00BB3B53 /* TestCase_HorizontalLine.swift */,
 				0E0EAD822602737400EED294 /* TestCase_Link.swift */,
 				0E0EAD852602737500EED294 /* TestCase_List.swift */,
+				0EA8457826262E65007721B0 /* TestCase_NewLine.swift */,
 				0E0EAD812602737400EED294 /* TestCase_Strikethrough.swift */,
 				0E0EAD872602737500EED294 /* TestCase.swift */,
 			);
@@ -651,6 +656,7 @@
 				0E1167E8261B2BDD00BB3B53 /* ParserTests_HorizontalLine.swift */,
 				0E0EAD712602737400EED294 /* ParserTests_Link.swift */,
 				0E0EAD792602737400EED294 /* ParserTests_List.swift */,
+				0EA8457C26262EEE007721B0 /* ParserTests_NewLine.swift */,
 				0E0EAD772602737400EED294 /* ParserTests_Strikethrough.swift */,
 			);
 			path = Parser;
@@ -957,6 +963,7 @@
 				0E0EADF82602756F00EED294 /* TestCase_Code_Span.swift in Sources */,
 				0E0EADF02602756700EED294 /* LinkInlineFragmentTest.swift in Sources */,
 				0E0EADF92602756F00EED294 /* TestCase.swift in Sources */,
+				0EA8457D26262EEE007721B0 /* ParserTests_NewLine.swift in Sources */,
 				0E0EADEF2602756700EED294 /* ListBlockFragmentTests.swift in Sources */,
 				0E0EADD32602743700EED294 /* ParserTests_Header.swift in Sources */,
 				0EDD15BD260F73B20067E884 /* LocalParsersTests+zeroOrManyCharacters.swift in Sources */,
@@ -965,6 +972,7 @@
 				0E0EADD02602743700EED294 /* ParserTests_Strikethrough.swift in Sources */,
 				0E9C0D742621F8FC007FDD32 /* EmphasisInlineFragmentTests.swift in Sources */,
 				0E0EADCE2602743700EED294 /* ParserTests_Backslash.swift in Sources */,
+				0EA8457926262E65007721B0 /* TestCase_NewLine.swift in Sources */,
 				0E0EADC82602743000EED294 /* HTMLRendererTests.swift in Sources */,
 				0EDD15B7260F733A0067E884 /* LocalParsersTests+stringUntil.swift in Sources */,
 				0E0EADC02602742600EED294 /* ParsersTests+oneOf.swift in Sources */,

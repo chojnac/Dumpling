@@ -39,8 +39,8 @@ public struct PlainTextRenderer: Renderer {
         }
     }
 
-    private func render(tagNode _: AST.NewLineNode, chunks: inout [String]) {
-        chunks.append("\n")
+    private func render(tagNode node: AST.NewLineNode, chunks: inout [String]) {
+        chunks.append(node.soft ? " " : "\n")
     }
 
     private func render(tagNode _: AST.SpaceNode, chunks: inout [String]) {

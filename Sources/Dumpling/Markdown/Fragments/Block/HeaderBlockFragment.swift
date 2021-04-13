@@ -14,6 +14,11 @@ public struct HeaderBlockFragment: MarkdownBlockFragment {
 
     public init() {}
 
+    let lineEnd = Parsers.zip(
+        Parsers.zeroOrManySpaces,
+        Parsers.newLine.mapToVoid
+    ).mapToVoid
+
     public func build(markdown: MarkdownType) -> Parser<AST.HeaderNode> {
         let start: Parser<Int> = Parsers.zip(
             Parsers.oneOrMany(Parsers.one(character: "#")),
@@ -23,10 +28,9 @@ public struct HeaderBlockFragment: MarkdownBlockFragment {
             return count > maxLevel ? Parser<Int>.zero() : .just(count)
         }
 
-        let stop = Parsers.newLine.mapToVoid
         let content = markdown.inline(
-            exitParser: stop,
-            preExitCheckParser: stop
+            exitParser: lineEnd,
+            preExitCheckParser: lineEnd
         )
 
         return Parsers.zip(
@@ -34,9 +38,9 @@ public struct HeaderBlockFragment: MarkdownBlockFragment {
             start,
             content,
             Parsers.oneOf(
-                Parsers.emptyLines,
-                Parsers.newLine.mapTo(1),
-                .just(0)
+                Parsers.emptyLines.mapToVoid,
+                lineEnd,
+                .just(())
             )
         ).map { _, count, content, _ in
             AST.HeaderNode(size: count, children: content)

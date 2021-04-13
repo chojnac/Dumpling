@@ -36,7 +36,7 @@ extension TestCase {
                                      parsed: #"<p><link uri="/my uri">link</link></p>"#)
 
         static let case07 = TestCase(text: "[link](foo\nbar)",
-                                     parsed: "<p>[link](foo⏎bar)</p>")
+                                     parsed: "<p>[link](foo⌟bar)</p>")
 
         static let case08 = TestCase(text: #"[link](\(foo\))"#,
                                      parsed: #"<p><link uri="(foo)">link</link></p>"#)

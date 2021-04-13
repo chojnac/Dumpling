@@ -23,7 +23,7 @@ extension TestCase {
 
         static let case03 = TestCase(
             text: "Inline `code` or\n```\nblock code\n```",
-            parsed: "<p>Inline␣<code>code</code>␣or⏎</p><code block=\"true\">block code</code>"
+            parsed: "<p>Inline␣<code>code</code>␣or⌟</p><code block=\"true\">block code</code>"
         )
     }
 }

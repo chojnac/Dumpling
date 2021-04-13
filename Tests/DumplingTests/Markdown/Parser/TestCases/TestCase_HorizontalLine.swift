@@ -18,7 +18,7 @@ extension TestCase {
                                      parsed: "<p>+++</p>")
 
         static let case03 = TestCase(text: "**\n--\n__",
-                                     parsed: "<p>**⏎--⏎__</p>")
+                                     parsed: "<p>**⌟--⌟__</p>")
 
         static let case04 = TestCase(text: " ***\n  ***\n   ***",
                                      parsed: "<hr><hr><hr>")
@@ -51,6 +51,6 @@ extension TestCase {
                                      parsed: "<p>␣<em>-</em></p>")
 
         static let case14 = TestCase(text: "Foo\n***\nbar",
-                                     parsed: "<p>Foo⏎</p><hr><p>bar</p>")
+                                     parsed: "<p>Foo⌟</p><hr><p>bar</p>")
     }
 }

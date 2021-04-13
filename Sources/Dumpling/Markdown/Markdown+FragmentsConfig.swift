@@ -61,8 +61,8 @@ extension Markdown.FragmentsConfig {
     public static let base: Self = .init(
         inline: [
             EscapeInlineFragment().any(),
-            SpaceInlineFragment().any(),
-            NewLineInlineFragment().any()
+            NewLineInlineFragment().any(),
+            SpaceInlineFragment().any()
         ],
         block: [
             EOFBlockFragment().any()

@@ -33,7 +33,7 @@
 </ul>
 
 <ol>
-  <li>Ordered </li>
+  <li>Ordered</li>
   <li>Lists</li>
 </ol>
 

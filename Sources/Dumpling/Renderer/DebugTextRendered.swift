@@ -38,8 +38,8 @@ public struct DebugTextRenderer: Renderer {
             render(node: element, chunks: &chunks)
         case let element as AST.ListElementNode:
             render(node: element, chunks: &chunks)
-        case is AST.NewLineNode:
-            chunks.append("⏎")
+        case let element as AST.NewLineNode:
+            chunks.append(element.soft ? "⌟" : "⏎")
         case is AST.HorizontalLineNode:
             chunks.append("<hr>")
         case is AST.SpaceNode:

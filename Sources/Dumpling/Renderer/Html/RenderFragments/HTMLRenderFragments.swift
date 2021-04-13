@@ -173,6 +173,15 @@ public struct ListNodeHTMLRenderFragment: HTMLRenderFragment {
     }
 }
 
+public struct NewLineNodeHTMLRenderFragment: HTMLRenderFragment {
+    public func render(
+        _ node: AST.NewLineNode,
+        renderer: HTMLContentRenderer
+    ) -> String? {
+        return node.soft ? " " : "<br/>"
+    }
+}
+
 public struct NothingNodeHTMLRenderFragment: HTMLRenderFragment {
     public func render(
         _ node: ASTNode,

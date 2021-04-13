@@ -77,6 +77,17 @@ public struct ParagraphNodeRenderFragment: AttributedStringRenderFragment {
     }
 }
 
+public struct NewLineNodeRenderFragment: AttributedStringRenderFragment {
+    public func render(
+        _ node: AST.NewLineNode,
+        context: AttributedStringRenderer.Context,
+        renderer: AttributedStringContentRenderer
+    ) -> NSAttributedString? {
+        let attributes = context.parentAttributes
+        return NSAttributedString(string: node.soft ? " " : "\n", attributes: attributes)
+    }
+}
+
 public struct NothingNodeRenderFragment: AttributedStringRenderFragment {
     public func render(
         _ node: ASTNode,

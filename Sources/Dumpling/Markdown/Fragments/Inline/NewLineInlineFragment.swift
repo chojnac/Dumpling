@@ -11,6 +11,12 @@ import Foundation
 struct NewLineInlineFragment: MarkdownInlineFragment {
     public let identifier: String = "newLine"
     
-    func build(markdown: MarkdownType) -> Parser<AST.NewLineNode> { Parsers.newLine.map(AST.NewLineNode.init)
+    func build(markdown: MarkdownType) -> Parser<AST.NewLineNode> {
+        Parsers.zip(
+            Parsers.zeroOrManySpaces,
+            Parsers.newLine
+        ).map { count, _ in
+            AST.NewLineNode(soft: count < 2 )
+        }
     }
 }

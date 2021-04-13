@@ -33,7 +33,7 @@ public class AttributedStringRenderer: Renderer {
         self.theme = theme
         nodeRenderer = [
             AST.EOFNode.typeName: NothingNodeRenderFragment().any(),
-            AST.NewLineNode.typeName: NothingNodeRenderFragment().any(),
+            AST.NewLineNode.typeName: NewLineNodeRenderFragment().any(),
             AST.StyleNode.typeName: StyleNodeRenderFragment().any(),
             AST.TextNode.typeName: TextNodeRenderFragment().any(),
             AST.SpaceNode.typeName: SpaceNodeRenderFragment().any(),

@@ -13,7 +13,7 @@ extension TestCase {
     struct List {
         static let case01 = TestCase(
             text: " * Lorem \n * Ipsum",
-            parsed: "<ul l=0><li>Lorem␣</li><li>Ipsum</li></ul>"
+            parsed: "<ul l=0><li>Lorem</li><li>Ipsum</li></ul>"
         )
 
         static let case02 = TestCase(
@@ -28,7 +28,7 @@ extension TestCase {
 
         static let case03 = TestCase(
             text: " * Lorem **bold \n message** \n * Ipsum *italic \n message* \n\n Paragraph",
-            parsed: "<ul l=0><li>Lorem␣<strong>bold␣⏎␣message</strong>␣</li><li>Ipsum␣<em>italic␣⏎␣message</em></li></ul><p>Paragraph</p>"
+            parsed: "<ul l=0><li>Lorem␣<strong>bold⌟␣message</strong></li><li>Ipsum␣<em>italic⌟␣message</em></li></ul><p>Paragraph</p>"
         )
         static let case04 = TestCase(
             text: """

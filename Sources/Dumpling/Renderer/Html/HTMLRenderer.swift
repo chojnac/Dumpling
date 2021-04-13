@@ -24,7 +24,7 @@ public class HTMLRenderer: Renderer {
     public init() {
         nodeRenderer = [
             AST.EOFNode.typeName: NothingNodeHTMLRenderFragment().any(),
-            AST.NewLineNode.typeName: NothingNodeHTMLRenderFragment().any(),
+            AST.NewLineNode.typeName: NewLineNodeHTMLRenderFragment().any(),
             AST.StyleNode.typeName: StyleNodeHTMLRenderFragment().any(),
             AST.TextNode.typeName: TextNodeHTMLRenderFragment().any(),
             AST.SpaceNode.typeName: SpaceNodeHTMLRenderFragment().any(),
