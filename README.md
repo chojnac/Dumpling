@@ -147,4 +147,4 @@ You will find more advanced examples in the [project example playground](https:/
 
 Dumpling is available under the MIT license. See the [LICENSE](https://github.com/chojnac/Dumpling/blob/master/LICENSE) file for more info.
 
-Markdown test document used in the project is based on [Max Stoiber's Markdown Test File](https://github.com/mxstbr/)markdown-test-file)
+Markdown test document used in the project based on [Max Stoiber's Markdown Test File](https://github.com/mxstbr/markdown-test-file)
