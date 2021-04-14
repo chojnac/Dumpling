@@ -301,6 +301,8 @@ _single underscores_
 
 __double underscores__
 
+* List **item 1**
+
 ### Code
 
 To indicate a span of code, wrap it with backtick quotes (`` ` ``).

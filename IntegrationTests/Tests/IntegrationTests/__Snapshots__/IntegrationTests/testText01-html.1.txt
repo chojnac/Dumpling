@@ -34,7 +34,7 @@
 
 <ol>
   <li>Ordered</li>
-  <li>Lists</li>
+  <li>Lists with <strong>style</strong></li>
 </ol>
 
 <p>Inline <code>code</code> or </p>
@@ -42,3 +42,17 @@
 <pre><code>block code</code></pre>
 
 <p><a href="http://github.com/chojnac/">Links</a></p>
+
+<blockquote>
+<p>Blockquotes </p>
+
+<blockquote>
+<p>and nested blockquote.</p>
+</blockquote>
+<h2>With nested content</h2>
+
+<ol>
+  <li>This is the <strong>first</strong> list <s>item</s>.</li>
+  <li>This is the <em>second</em> list item.</li>
+</ol>
+</blockquote>

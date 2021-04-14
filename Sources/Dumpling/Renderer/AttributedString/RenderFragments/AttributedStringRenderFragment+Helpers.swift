@@ -33,5 +33,31 @@ extension AttributedStringRenderFragment {
         result.addAttributes(attributes, range: NSRange(location: 0, length: string.length))
         return result
     }
+
+    public func makeContentIdent(
+        context: AttributedStringRenderer.Context,
+        attributes: inout StringAttributesType
+    ) {
+        let level = context.contentIdentLevel
+        guard level > 0 else { return }
+
+        let value = CGFloat(level) * CGFloat(context.theme.contentIdentSize)
+
+        guard let someParagraph = attributes[.paragraphStyle] as? NSParagraphStyle
+        else {
+            let paragraph = NSMutableParagraphStyle()
+            paragraph.firstLineHeadIndent = value
+            paragraph.headIndent = value
+            attributes[.paragraphStyle] = paragraph
+            return
+        }
+
+        let paragraph = NSMutableParagraphStyle()
+        paragraph.setParagraphStyle(someParagraph)
+        paragraph.firstLineHeadIndent += value
+        paragraph.headIndent += value
+        attributes[.paragraphStyle] = paragraph
+
+    }
 }
 #endif

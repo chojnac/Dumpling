@@ -27,9 +27,9 @@ Renderer implementations use AST to produce the final output. Dumpling provides 
 ## Supported Elements
 
 ````
-*italic* or _italics_
-**bold** or __bold__
-~~strikethrough~~
+*italic* or _italics_ 
+**bold** or __bold__ 
+~~strikethrough~~ 
 
 # Header 1
 ## Header 2
@@ -46,18 +46,26 @@ ___
 * * *   *
 -----------------
 
+
 * List
   - List
 + List
 
 1. Ordered 
-1. Lists
+1. Lists with **style**
 
 Inline `code` or 
 ``` 
 block code
 ```
 [Links](http://github.com/chojnac/)
+
+> Blockquotes
+> > and  nested blockquote.
+>
+> ## With nested content 
+> 1.   This is the **first** list ~~item~~.
+> 2.   This is the *second* list item.
 ````
 
 Please note that the goal of this project was to create a foundation for a  flexible Markdown parser. Dumpling doesn't fully support all Markdown specs. This is a very young implementation so it covers only the most common set of Markdown features. 
@@ -138,3 +146,5 @@ You will find more advanced examples in the [project example playground](https:/
 ## License
 
 Dumpling is available under the MIT license. See the [LICENSE](https://github.com/chojnac/Dumpling/blob/master/LICENSE) file for more info.
+
+Markdown test document used in the project is based on [Max Stoiber's Markdown Test File](https://github.com/mxstbr/)markdown-test-file)

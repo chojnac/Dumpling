@@ -77,6 +77,7 @@ extension Markdown.FragmentsConfig {
                 EmphasisInlineFragment.instance().any(),
             ],
             block: [
+                BlockquoteBlockFragment().any(),
                 HorizontalLineBlockFragment().any(), // take precedence over list
                 HeaderBlockFragment().any(),
                 ListBlockFragment().any(),

@@ -25,30 +25,16 @@ final class ViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         changePreviewType(typeSelection)
-        /// https://github.com/mxstbr/markdown-test-file/blob/master/TEST.md
-        let testingURL = URL(string:  "https://raw.githubusercontent.com/mxstbr/markdown-test-file/master/TEST.md")!
 
-        URLSession.shared.dataTask(with: testingURL) { [weak self] data, response, error in
-            guard let data = data else {
-                if let error = error {
-                    print("Error: \(error)")
+        let testingFilePath = Bundle.main.url(forResource: "text02.md", withExtension: nil)!
+        let text = try! String(contentsOf: testingFilePath)
 
-                }
-                return
-            }
-            guard let content = String(data: data, encoding: .utf8) else {
-                print("Invalid content, unable to create a string")
-                return
-            }
-            DispatchQueue.main.async {
-                let parser = Markdown()
-                let ast = parser.parse(content)
-                self?.show(html: ast.renderHTML())
-                let string = ast.renderAttributedString()
-                let storageSize = self?.textView.textStorage?.length ?? 0
-                self?.textView.textStorage?.replaceCharacters(in: NSRange(location: 0, length: storageSize), with: string)
-            }
-        }.resume()
+        let parser = Markdown()
+        let ast = parser.parse(text)
+        self.show(html: ast.renderHTML())
+        let string = ast.renderAttributedString()
+        let storageSize = textView.textStorage?.length ?? 0
+        self.textView.textStorage?.replaceCharacters(in: NSRange(location: 0, length: storageSize), with: string)
     }
 
     private func show(html: String) {

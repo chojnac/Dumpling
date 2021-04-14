@@ -151,6 +151,14 @@ public struct AST {
         public init() {}
     }
 
+    public struct BlockquoteNode: ASTNode {
+        public let children: [ASTNode]
+
+        public init(children: [ASTNode]) {
+            self.children = children
+        }
+    }
+
     public struct RootNode: ASTNode {
         public let children: [ASTNode]
         public init(children: [ASTNode]) {

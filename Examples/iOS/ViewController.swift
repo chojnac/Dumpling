@@ -29,36 +29,22 @@ final class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         changePreviewType(typeSelection)
-        /// https://github.com/mxstbr/markdown-test-file/blob/master/TEST.md
-        let testingURL = URL(string:  "https://raw.githubusercontent.com/mxstbr/markdown-test-file/master/TEST.md")!
+
+        let testingFilePath = Bundle.main.url(forResource: "text02.md", withExtension: nil)!
+        let text = try! String(contentsOf: testingFilePath)
 
         let attributedStringRenderer = AttributedStringRenderer(theme: .default)
 
         attributedStringRenderer.registerRenderFragment(fragment: CustomListNodeRenderFragment())
-        
-        URLSession.shared.dataTask(with: testingURL) { [weak self] data, response, error in
-            guard let data = data else {
-                if let error = error {
-                    print("Error: \(error)")
 
-                }
-                return
-            }
-            guard let content = String(data: data, encoding: .utf8) else {
-                print("Invalid content, unable to create a string")
-                return
-            }
-            DispatchQueue.main.async {
-                let parser = Markdown()
-                let ast = parser.parse(content)
-                self?.show(html: ast.renderHTML())
+        let parser = Markdown()
+        let ast = parser.parse(text)
+        self.show(html: ast.renderHTML())
 
-                let string = ast.renderAttributedString()
-                // uncomment to see use list indicator
-                // let string = attributedStringRenderer.render(ast)
-                self?.textView.attributedText = string
-            }
-        }.resume()
+        let string = ast.renderAttributedString()
+        // uncomment to see use of the custom list indicator
+        // let string = attributedStringRenderer.render(ast)
+        self.textView.attributedText = string
     }
 
     private func show(html: String) {

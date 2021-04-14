@@ -42,6 +42,8 @@ public struct DebugTextRenderer: Renderer {
             chunks.append(element.soft ? "⌟" : "⏎")
         case is AST.HorizontalLineNode:
             chunks.append("<hr>")
+        case let element as AST.BlockquoteNode:
+            render(node: element, chunks: &chunks)
         case is AST.SpaceNode:
             chunks.append("␣")
         default:
@@ -127,6 +129,12 @@ public struct DebugTextRenderer: Renderer {
         chunks.append("<\(html)>")
         render(children, chunks: &chunks)
         chunks.append("</\(html)>")
+    }
+
+    private func render(node: AST.BlockquoteNode, chunks: inout [String]) {
+        chunks.append("<quote>")
+        render(node.children, chunks: &chunks)
+        chunks.append("</quote>")
     }
 
     private func render(_ nodes: [ASTNode], chunks: inout [String]) {

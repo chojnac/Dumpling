@@ -34,6 +34,7 @@ public class HTMLRenderer: Renderer {
             AST.LinkNode.typeName: LinkNodeHTMLRenderFragment().any(),
             AST.CodeNode.typeName: CodeNodeHTMLRenderFragment().any(),
             AST.HorizontalLineNode.typeName: HorizontalLineNodeHTMLRenderFragment().any(),
+            AST.BlockquoteNode.typeName: BlockquoteNodeHTMLRenderFragment().any(),
         ]
 
         contentRenderer = ContentRenderer(renderer: self)

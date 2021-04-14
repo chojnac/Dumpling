@@ -29,6 +29,9 @@ open class AttributedStringTheme {
 
     private var styles: [StyleKey: StringStyle]
 
+    /// How many points we ident paragraph for a level 
+    public var contentIdentSize: CGFloat = 20
+    
     public required init(baseFont: Font, color: Color) {
         styles = [
             .document: compose(
@@ -88,7 +91,11 @@ extension AttributedStringTheme.StyleKey {
     public static let em = Self("em")
     public static let strong = Self("strong")
     public static let s = Self("s")
+
     public static let link = Self("link")
+
+    public static let list = Self("list")
+    public static let blockquote = Self("blockquote")
 
     public static let code = Self("code")
     public static let codeBlock = Self("codeBlock")

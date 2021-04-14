@@ -35,7 +35,15 @@ public struct LinkNodeRenderFragment: AttributedStringRenderFragment {
         }
         #endif
         let string = NSMutableAttributedString()
-        string.append(renderer.render(node.children, context: context))
+        string.append(
+            renderer.render(
+                node.children,
+                context: context.with(
+                    attributes: attributes,
+                    pathElement: .link
+                )
+            )
+        )
         string.addAttributes(attributes, range: NSRange(location: 0, length: string.length))
         return string
     }

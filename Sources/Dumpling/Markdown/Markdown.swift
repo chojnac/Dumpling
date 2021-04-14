@@ -13,6 +13,8 @@ public protocol MarkdownType {
         exitParser: Parser<Void>,
         preExitCheckParser: Parser<Void>?
     ) -> Parser<[ASTNode]>
+
+    func block(_ string: String) -> [ASTNode]
 }
 
 public final class Markdown {
@@ -24,6 +26,10 @@ public final class Markdown {
                 exitParser: exitParser,
                 preExitCheckParser: preExitCheckParser
             )
+        }
+
+        func block(_ string: String) -> [ASTNode] {
+            return markdown.block(string)
         }
     }
 
@@ -123,6 +129,10 @@ public final class Markdown {
         }
     }
 
+    func block(_ string: String) -> [ASTNode] {
+        var reader = string[...]
+        return parser().run(&reader)?.children ?? []
+    }
     public func parse(_ string: String) -> AST.RootNode {
         var reader = string[...]
         return parser().run(&reader) ?? AST.RootNode(children: [])

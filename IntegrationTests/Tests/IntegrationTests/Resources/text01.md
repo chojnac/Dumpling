@@ -23,10 +23,17 @@ ___
 + List
 
 1. Ordered 
-1. Lists
+1. Lists with **style**
 
 Inline `code` or 
 ``` 
 block code
 ```
 [Links](http://github.com/chojnac/)
+
+> Blockquotes
+> > and  nested blockquote.
+>
+> ## With nested content 
+> 1.   This is the **first** list ~~item~~.
+> 2.   This is the *second* list item.

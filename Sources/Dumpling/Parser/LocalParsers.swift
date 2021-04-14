@@ -33,7 +33,7 @@ extension Parsers {
     }
 
     public static let lineEnd: Parser<Void> = Parsers.oneOf(Parsers.newLine, Parsers.isDocEnd)
-    
+
     /// Match any single character
     public static let anyCharacter = Parser<Character>("anyCharacter") { reader in
         guard let ch = reader.popFirst() else {

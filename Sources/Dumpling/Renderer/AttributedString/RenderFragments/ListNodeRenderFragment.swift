@@ -27,7 +27,7 @@ open class ListNodeRenderFragment: AttributedStringRenderFragment {
         context: AttributedStringRenderer.Context,
         renderer: AttributedStringContentRenderer
     ) -> NSAttributedString? {
-        let attributes = context.theme.style(forKey: .document).apply([:])
+        let attributes = context.attributes(forKey: .list)
         let childrenCount = node.children.count
         let attributedString = NSMutableAttributedString()
 
@@ -43,7 +43,14 @@ open class ListNodeRenderFragment: AttributedStringRenderFragment {
                 attrs: attrs,
                 isLastItem: isLastItem
             )
-            let contentString = renderer.render(childNode.children, context: context.with(attributes: attrs))
+            makeContentIdent(context: context, attributes: &attrs)
+            let contentString = renderer.render(
+                childNode.children,
+                context: context.with(
+                    attributes: attrs,
+                    pathElement: .list
+                )
+            )
 
             let listString = listItem(
                 contentString,
@@ -98,6 +105,7 @@ open class ListNodeRenderFragment: AttributedStringRenderFragment {
 
         }
         para.paragraphSpacing = 0
+
         return para
     }
 
@@ -127,7 +135,6 @@ open class ListNodeRenderFragment: AttributedStringRenderFragment {
         }
 
         let mutableContent = NSMutableAttributedString(attributedString: content)
-        mutableContent.addAttributes(attributes, range: NSRange(location: 0, length: mutableContent.length))
         string.append(mutableContent)
         if !isLastItem {
             string.append(NSAttributedString(string: "\n", attributes: attributes))

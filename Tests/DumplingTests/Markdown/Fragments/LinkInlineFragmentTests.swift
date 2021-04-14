@@ -1,5 +1,5 @@
 //
-//  LinkInlineFragmentTest.swift
+//  LinkInlineFragmentTests.swift
 //  DumplingTests
 //
 //  Created by Wojciech Chojnacki on 31/05/2020.
@@ -9,7 +9,7 @@
 import XCTest
 @testable import Dumpling
 
-final class LinkInlineFragmentTest: XCTestCase {
+final class LinkInlineFragmentTests: XCTestCase {
     func test_case01() {
         var input = Substring("[this \\[[is test]]")
         let result = LinkInlineFragment.balancedBrackets("[").run(&input)

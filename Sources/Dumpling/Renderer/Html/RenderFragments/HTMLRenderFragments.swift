@@ -199,3 +199,16 @@ public struct HorizontalLineNodeHTMLRenderFragment: HTMLRenderFragment {
         return "\n<hr/>\n"
     }
 }
+
+public struct BlockquoteNodeHTMLRenderFragment: HTMLRenderFragment {
+    public func render(
+        _ node: AST.BlockquoteNode,
+        renderer: HTMLContentRenderer
+    ) -> String? {
+        var chunks = [String]()
+        chunks.append("\n<blockquote>")
+        chunks.append(renderer.render(node.children))
+        chunks.append("</blockquote>")
+        return chunks.joined()
+    }
+}

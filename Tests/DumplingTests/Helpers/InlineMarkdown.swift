@@ -21,4 +21,8 @@ final class InlineMarkdown: MarkdownType {
             preExitCheckParser: preExitCheckParser
         )
     }
+
+    func block(_ string: String) -> [ASTNode] {
+        parser.block(string)
+    }
 }

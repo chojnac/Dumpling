@@ -21,7 +21,10 @@ public struct StyleNodeRenderFragment: AttributedStringRenderFragment {
         let attributes = context.attributes(forKey: key)
         let string = renderer.render(
             node.children,
-            context: context.with(attributes: attributes)
+            context: context.with(
+                attributes: attributes,
+                pathElement: key
+            )
         )
         return applyStyle(key: key, context: context, string: string)
     }
@@ -34,11 +37,20 @@ public struct HeaderNodeRenderFragment: AttributedStringRenderFragment {
         renderer: AttributedStringContentRenderer
     ) -> NSAttributedString? {
         let key = AttributedStringTheme.StyleKey("h\(node.size)")
-        let attributes = context.attributes(forKey: key)
+        var attributes = context.attributes(forKey: key)
+        makeContentIdent(context: context, attributes: &attributes)
         let string = NSMutableAttributedString()
-        string.append(renderer.render(node.children, context: context.with(attributes: attributes)))
+        string.append(
+            renderer.render(
+                node.children,
+                context: context.with(
+                    attributes: attributes,
+                    pathElement: key
+                )
+            )
+        )
         string.append(NSAttributedString(string: "\n", attributes: attributes))
-        applyStyle(key: key, context: context, string: string)
+        string.addAttributes(attributes, range: NSRange(location: 0, length: string.length))
         return string
     }
 }
@@ -69,9 +81,18 @@ public struct ParagraphNodeRenderFragment: AttributedStringRenderFragment {
         context: AttributedStringRenderer.Context,
         renderer: AttributedStringContentRenderer
     ) -> NSAttributedString? {
-        let attributes = context.attributes(forKey: .p)
+        var attributes = context.attributes(forKey: .p)
         let string = NSMutableAttributedString()
-        string.append(renderer.render(node.children, context: context.with(attributes: attributes)))
+        makeContentIdent(context: context, attributes: &attributes)
+        string.append(
+            renderer.render(
+                node.children,
+                context: context.with(
+                    attributes: attributes,
+                    pathElement: .p
+                )
+            )
+        )
         string.append(NSAttributedString(string: "\n\n", attributes: attributes))
         return string
     }

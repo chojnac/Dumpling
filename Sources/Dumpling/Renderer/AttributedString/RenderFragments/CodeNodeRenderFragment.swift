@@ -22,16 +22,25 @@ public struct CodeNodeRenderFragment: AttributedStringRenderFragment {
     ) -> NSAttributedString? {
         
         var attributes: StringAttributesType
+        let key: AttributedStringTheme.StyleKey
         if node.isBlock {
-            let key = AttributedStringTheme.StyleKey.codeBlock
+            key = .codeBlock
             attributes = context.attributes(forKey: key)
         } else {
-            let key = AttributedStringTheme.StyleKey.code
+            key = .code
             attributes = context.attributes(forKey: key)
         }
         
         let attributedString = NSMutableAttributedString()
-        attributedString.append(renderer.render(node.children, context: context.with(attributes: attributes)))
+        attributedString.append(
+            renderer.render(
+                node.children,
+                context: context.with(
+                    attributes: attributes,
+                    pathElement: key
+                )
+            )
+        )
         if node.isBlock {
             attributedString.append(NSAttributedString(string: "\n", attributes: attributes))
         }

@@ -43,6 +43,7 @@ public class AttributedStringRenderer: Renderer {
             AST.LinkNode.typeName: LinkNodeRenderFragment().any(),
             AST.CodeNode.typeName: CodeNodeRenderFragment().any(),
             AST.HorizontalLineNode.typeName: HorizontalLineNodeRenderFragment().any(),
+            AST.BlockquoteNode.typeName: BlockquoteNodeRenderFragment().any(),
         ]
 
         contentRenderer = ContentRenderer(renderer: self)
