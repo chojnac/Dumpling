@@ -1,7 +1,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'Dumpling'
-  s.version          = '0.1.0'
+  s.version          = '0.2.0'
   s.summary          = 'Dumpling is a pure Swift customisable and extensible Markdown parser for iOS and macOS.'
   s.homepage         = 'https://github.com/chojnac/Dumpling'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
