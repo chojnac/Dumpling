@@ -17,7 +17,7 @@ final class BlockquoteBlockFragmentTests: XCTestCase {
 > Lorem
  >Ipsum
 """
-        var input = Substring(text)
+        var input = Reader(text)
         let result = fragment.contentParser().run(&input)
         let content = try XCTUnwrap(result)
         XCTAssertEqual(content.1, 1)
@@ -32,7 +32,7 @@ Ipsum
 > >  Lorem
 Ipsum
 """
-        var input = Substring(text)
+        var input = Reader(text)
         let result = fragment.contentParser().run(&input)
         let content = try XCTUnwrap(result)
         XCTAssertEqual(content.1, 2)
@@ -47,7 +47,7 @@ Ipsum
 >  Lorem
 > > Ipsum
 """
-        var input = Substring(text)
+        var input = Reader(text)
         let result = fragment.contentParser().run(&input)
         let content = try XCTUnwrap(result)
         XCTAssertEqual(content.1, 1)

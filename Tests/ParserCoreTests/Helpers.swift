@@ -12,13 +12,14 @@ import Dumpling
 public func pChar(character: Character) -> Parser<Character> {
     .init("pChar:'\(character)'") { reader in
         let origin = reader
-        guard let ch = reader.popFirst() else { return nil }
+        guard let ch = reader.first else { return nil }
 
         guard ch == character else {
             reader = origin
             return nil
         }
 
+        reader = reader.dropFirst()
         return character
     }
 }

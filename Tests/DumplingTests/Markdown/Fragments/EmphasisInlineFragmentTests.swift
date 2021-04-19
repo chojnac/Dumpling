@@ -24,10 +24,10 @@ final class EmphasisInlineFragmentTests: XCTestCase {
         }
     }
     func test_delimiterRun_case01() throws {
-        var input = Substring("a___b").dropFirst()
+        var input = Reader("a___b").dropFirst()
         let value = delimiterRun().run(&input)
         let result = try XCTUnwrap(value)
-        XCTAssertEqual(String(input), "___b")
+        XCTAssertEqual(input.string(), "___b")
         XCTAssertEqual(result.character, "_")
         XCTAssertEqual(result.count, 3)
         XCTAssertEqual(result.lhs, "a")
@@ -35,10 +35,10 @@ final class EmphasisInlineFragmentTests: XCTestCase {
     }
 
     func test_delimiterRun_case02() throws {
-        var input = Substring("___").dropFirst()
+        var input = Reader("___").dropFirst()
         let value = delimiterRun().run(&input)
         let result = try XCTUnwrap(value)
-        XCTAssertEqual(String(input), "__")
+        XCTAssertEqual(input.string(), "__")
         XCTAssertEqual(result.character, "_")
         XCTAssertEqual(result.count, 3)
         XCTAssertNil(result.lhs)
@@ -46,33 +46,33 @@ final class EmphasisInlineFragmentTests: XCTestCase {
     }
 
     func test_checkPreceded_case01() {
-        var input = Substring("abc").dropFirst()
+        var input = Reader("abc").dropFirst()
         let result = EmphasisCheckPreceded(forParser: Parsers.anyCharacter)
             .run(&input)
         XCTAssertEqual(result, "a")
-        XCTAssertEqual(String(input), "bc")
+        XCTAssertEqual(input.string(), "bc")
     }
 
     func test_checkPreceded_case02() {
-        var input = Substring("abc").dropFirst()
+        var input = Reader("abc").dropFirst()
         let result = EmphasisCheckPreceded(UInt(2), forParser: Parsers.anyCharacter)
             .run(&input)
         XCTAssertEqual(result, "a")
-        XCTAssertEqual(String(input), "bc")
+        XCTAssertEqual(input.string(), "bc")
     }
 
     func test_checkPreceded_case03() {
-        var input = Substring("abc").dropFirst(3)
+        var input = Reader("abc").dropFirst(3)
         let result = EmphasisCheckPreceded(forParser: Parsers.anyCharacter)
             .run(&input)
         XCTAssertEqual(result, "c")
-        XCTAssertEqual(String(input), "")
+        XCTAssertEqual(input.string(), "")
     }
 
     let underTest = UnderTest(kind: .normal)
 
     func test_leftOnly_case01() throws {
-        var input = Substring("**abc")
+        var input = Reader("**abc")
 
         let value = underTest.baseDelimiterCheck().run(&input)
         let result = try XCTUnwrap(value)
@@ -84,7 +84,7 @@ final class EmphasisInlineFragmentTests: XCTestCase {
     }
 
     func test_leftOnly_case02() throws {
-        var input = Substring("_abc")
+        var input = Reader("_abc")
 
         let value = underTest.baseDelimiterCheck().run(&input)
         let result = try XCTUnwrap(value)
@@ -96,7 +96,7 @@ final class EmphasisInlineFragmentTests: XCTestCase {
     }
 
     func test_leftOnly_case03() throws {
-        var input = Substring(#"**"abc""#)
+        var input = Reader(#"**"abc""#)
         let value = underTest.baseDelimiterCheck().run(&input)
         let result = try XCTUnwrap(value)
 
@@ -107,7 +107,7 @@ final class EmphasisInlineFragmentTests: XCTestCase {
     }
 
     func test_leftOnly_case04() throws {
-        var input = Substring(#"_"abc""#)
+        var input = Reader(#"_"abc""#)
         let value = underTest.baseDelimiterCheck().run(&input)
         let result = try XCTUnwrap(value)
 
@@ -118,7 +118,7 @@ final class EmphasisInlineFragmentTests: XCTestCase {
     }
 
     func test_leftOnly_case05() throws {
-        var input = Substring("**abc").dropFirst()
+        var input = Reader("**abc").dropFirst()
         let value = underTest.baseDelimiterCheck().run(&input)
         let result = try XCTUnwrap(value)
 
@@ -129,7 +129,7 @@ final class EmphasisInlineFragmentTests: XCTestCase {
     }
 
     func test_rightOnly_case01() throws {
-        var input = Substring("abc***").dropFirst(3)
+        var input = Reader("abc***").dropFirst(3)
         let value = underTest.baseDelimiterCheck().run(&input)
         let result = try XCTUnwrap(value)
 
@@ -140,7 +140,7 @@ final class EmphasisInlineFragmentTests: XCTestCase {
     }
 
     func test_rightOnly_case02() throws {
-        var input = Substring("abc_").dropFirst(3)
+        var input = Reader("abc_").dropFirst(3)
         let value = underTest.baseDelimiterCheck().run(&input)
         let result = try XCTUnwrap(value)
 
@@ -151,7 +151,7 @@ final class EmphasisInlineFragmentTests: XCTestCase {
     }
 
     func test_rightOnly_case03() throws {
-        var input = Substring(#""abc"**"#).dropFirst(5)
+        var input = Reader(#""abc"**"#).dropFirst(5)
         let value = underTest.baseDelimiterCheck().run(&input)
         let result = try XCTUnwrap(value)
 
@@ -162,7 +162,7 @@ final class EmphasisInlineFragmentTests: XCTestCase {
     }
 
     func test_rightOnly_case04() throws {
-        var input = Substring(#""abc"_"#).dropFirst(5)
+        var input = Reader(#""abc"_"#).dropFirst(5)
         let value = underTest.baseDelimiterCheck().run(&input)
         let result = try XCTUnwrap(value)
 
@@ -173,7 +173,7 @@ final class EmphasisInlineFragmentTests: XCTestCase {
     }
 
     func test_both_case01() throws {
-        var input = Substring("abc**def").dropFirst(3)
+        var input = Reader("abc**def").dropFirst(3)
         let value = underTest.baseDelimiterCheck().run(&input)
         let result = try XCTUnwrap(value)
 
@@ -184,7 +184,7 @@ final class EmphasisInlineFragmentTests: XCTestCase {
     }
 
     func test_both_case02() throws {
-        var input = Substring(#""abc"_"def""#).dropFirst(5)
+        var input = Reader(#""abc"_"def""#).dropFirst(5)
         let value = underTest.baseDelimiterCheck().run(&input)
         let result = try XCTUnwrap(value)
 
@@ -195,7 +195,7 @@ final class EmphasisInlineFragmentTests: XCTestCase {
     }
 
     func test_neither_case01() throws {
-        var input = Substring(#"abc ** def"#).dropFirst(4)
+        var input = Reader(#"abc ** def"#).dropFirst(4)
         let value = underTest.baseDelimiterCheck().run(&input)
         let result = try XCTUnwrap(value)
 
@@ -206,7 +206,7 @@ final class EmphasisInlineFragmentTests: XCTestCase {
     }
 
     func test_neither_case02() throws {
-        var input = Substring(#"a _ b"#).dropFirst(2)
+        var input = Reader(#"a _ b"#).dropFirst(2)
         let value = underTest.baseDelimiterCheck().run(&input)
         let result = try XCTUnwrap(value)
 

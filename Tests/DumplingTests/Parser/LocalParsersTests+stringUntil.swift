@@ -13,7 +13,7 @@ import Dumpling
 final class LocalParsersTests_stringUntil: XCTestCase {
 
     func test_simple() {
-        var input = Substring("Lorem")
+        var input = Reader("Lorem")
 
         let exit = pChar(character: "r").mapToVoid
 
@@ -22,11 +22,11 @@ final class LocalParsersTests_stringUntil: XCTestCase {
         let result = parser.run(&input)
 
         XCTAssertEqual(result, "Lo")
-        XCTAssertEqual(String(input), "rem")
+        XCTAssertEqual(input.string(), "rem")
     }
 
     func test_endOfData() {
-        var input = Substring("Lorem")
+        var input = Reader("Lorem")
 
         let exit = pChar(character: "1").mapToVoid
 
@@ -35,6 +35,6 @@ final class LocalParsersTests_stringUntil: XCTestCase {
         let result = parser.run(&input)
 
         XCTAssertEqual(result, "Lorem")
-        XCTAssertEqual(String(input), "")
+        XCTAssertEqual(input.string(), "")
     }
 }

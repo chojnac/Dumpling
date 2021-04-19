@@ -12,32 +12,27 @@ import Dumpling
 final class LocalParsersTests_lineStart: XCTestCase {
 
     func test_match() {
-        let text = String(" \n ")
-        let idx = text.index(text.startIndex, offsetBy: 2)
-        var input = text[idx...]
+        var input = Reader(" \n ").dropFirst(2)
         let result: Void? = Parsers.lineStart.run(&input)
 
         XCTAssertNotNil(result)
-        XCTAssertEqual(String(input), " ")
+        XCTAssertEqual(input.string(), " ")
     }
 
     func test_document_match() {
-        let text = String(" \n ")
-        var input = text[text.startIndex...]
+        var input = Reader(" \n ")
         let result: Void? = Parsers.lineStart.run(&input)
 
         XCTAssertNotNil(result)
-        XCTAssertEqual(String(input), " \n ")
+        XCTAssertEqual(input.string(), " \n ")
     }
 
     func test_no_match() {
-        let text = String(" \n ")
-        let idx = text.index(text.startIndex, offsetBy: 1)
-        var input = text[idx...]
+        var input = Reader(" \n ").dropFirst()
         let result: Void? = Parsers.lineStart.run(&input)
 
         XCTAssertNil(result)
-        XCTAssertEqual(String(input), "\n ")
+        XCTAssertEqual(input.string(), "\n ")
     }
 
 }

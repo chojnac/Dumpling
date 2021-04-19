@@ -130,11 +130,11 @@ public final class Markdown {
     }
 
     func block(_ string: String) -> [ASTNode] {
-        var reader = string[...]
+        var reader = Reader(string)
         return parser().run(&reader)?.children ?? []
     }
     public func parse(_ string: String) -> AST.RootNode {
-        var reader = string[...]
+        var reader = Reader(string)
         return parser().run(&reader) ?? AST.RootNode(children: [])
     }
 }

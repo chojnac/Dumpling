@@ -14,6 +14,8 @@ public enum Parsers {
     ///
     /// - Parameter parsers: parsers to execute
     /// - Returns: result of the first successful parser
+    @inlinable
+    @inline(__always)
     public static func oneOf<T: ParserType>(_ parsers: T ...) -> Parser<T.Element> {
         oneOf(parsers)
     }
@@ -22,10 +24,13 @@ public enum Parsers {
     ///
     /// - Parameter parsers: parsers to execute
     /// - Returns: result of the first successful parser
-    public static func oneOf<T: ParserType, C: RandomAccessCollection>(_ parsers: C)
-        -> Parser<T.Element> where C.Element == T {
-            let names = parsers.map { $0.name }.joined(separator: ",")
-            return Parser("oneOf[\(names)]") { reader -> T.Element? in
+    @inlinable
+    @inline(__always)
+    public static func oneOf<T: ParserType, C: RandomAccessCollection>(
+        _ parsers: C
+    ) -> Parser<T.Element> where C.Element == T {
+        let names = parsers.map { $0.name }.joined(separator: ",")
+        return Parser("oneOf[\(names)]") { reader -> T.Element? in
             for parser in parsers {
                 if let result = parser.run(&reader) {
                     return result
@@ -51,6 +56,8 @@ public enum Parsers {
     ///  - stop: consuming parser which stops the loop
     /// - Returns: a tuple of accumulated results from the `check` parser and the result of
     /// stop parser (content is match succeed or nil if loop finished from other reasons)
+    @inlinable
+    @inline(__always)
     public static func repeatUntil<P1: ParserType, P2: ParserType>(
         _ check: P1,
         stop: P2
@@ -79,7 +86,9 @@ public enum Parsers {
             } while true
         }
     }
-
+    
+    @inlinable
+    @inline(__always)
     public static func minMax<P: ParserType>(parser: P, min: UInt, max: UInt? = nil) -> Parser<[P.Element]> {
         if let max = max {
             precondition(max >= min, "Max must be greather that min")

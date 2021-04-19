@@ -12,39 +12,39 @@ import Dumpling
 final class LocalParsersTests_minCharacters: XCTestCase {
 
     func test_min_match() {
-        var input = Substring("```` ")
+        var input = Reader("```` ")
 
         let result = Parsers.min(character: "`", min: 3).run(&input)
 
         XCTAssertEqual(result, 4)
-        XCTAssertEqual(String(input), " ")
+        XCTAssertEqual(input.string(), " ")
     }
 
     func test_min_eof_match() {
-        var input = Substring("```")
+        var input = Reader("```")
 
         let result = Parsers.min(character: "`", min: 3).run(&input)
 
         XCTAssertEqual(result, 3)
-        XCTAssertEqual(String(input), "")
+        XCTAssertEqual(input.string(), "")
     }
 
     func test_min_no_match() {
-        var input = Substring("`` ")
+        var input = Reader("`` ")
 
         let result = Parsers.min(character: "`", min: 3).run(&input)
 
         XCTAssertNil(result)
-        XCTAssertEqual(String(input), "`` ")
+        XCTAssertEqual(input.string(), "`` ")
     }
 
     func test_min_eof_no_match() {
-        var input = Substring("``")
+        var input = Reader("``")
 
         let result = Parsers.min(character: "`", min: 3).run(&input)
 
         XCTAssertNil(result)
-        XCTAssertEqual(String(input), "``")
+        XCTAssertEqual(input.string(), "``")
     }
 
 }

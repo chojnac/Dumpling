@@ -217,7 +217,7 @@ struct EmphasisCheckPreceded<T>: ParserType {
             offsetBy: -Int(k),
             limitedBy: reader.base.startIndex
         ) ?? reader.base.startIndex
-        var newReader = reader.base[newStartIndex..<reader.endIndex]
+        var newReader = reader.sub(newStartIndex, reader.endIndex)
         return parser.run(&newReader)
     }
 }
@@ -269,7 +269,7 @@ struct EmphasisDelimterRunParser: ParserType {
             ) else {
                 break
             }
-            lhsReader = lhsReader.base[newStartIndex..<lhsReader.endIndex]
+            lhsReader = lhsReader.sub(newStartIndex, lhsReader.endIndex)
             guard let character = lhsReader.first else {
                 break
             }

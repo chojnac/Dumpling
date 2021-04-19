@@ -35,7 +35,7 @@ public struct BlockquoteBlockFragment: MarkdownBlockFragment {
     }
 
     private func parse(content: String, contentParser: Parser<String>) -> AST.BlockquoteNode? {
-        var nestedReader = Substring(content)
+        var nestedReader = Reader(content)
         guard let result = contentParser.run(&nestedReader) else {
             return nil
         }

@@ -138,7 +138,7 @@ extension LinkInlineFragment {
             return (linkType(""), nil)
         }
 
-        var reader = Substring(input)
+        var reader = Reader(input)
 
         let source = Parsers.oneOf(
             balancedBrackets("<"),
@@ -149,7 +149,7 @@ extension LinkInlineFragment {
             return (linkType(result), nil)
         }
 
-        reader = Substring(input)
+        reader = Reader(input)
 
         let title = Parsers.oneOf(
             balancedBrackets("\""),

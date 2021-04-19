@@ -12,35 +12,35 @@ import Dumpling
 
 final class LocalParsersTests_zeroOrManyCharacters: XCTestCase {
     func test_string_match() {
-        var input = Substring("1 ala ma \nkota")
+        var input = Reader("1 ala ma \nkota")
         
         let codeParamsCharacterSet = CharacterSet.alphanumerics.union(CharacterSet.whitespaces)
         
         let result = Parsers.zeroOrManyCharacters(inSet: codeParamsCharacterSet).run(&input)
         
         XCTAssertEqual(result, "1 ala ma ")
-        XCTAssertEqual(String(input), "\nkota")
+        XCTAssertEqual(input.string(), "\nkota")
     }
     
     func test_nothing_match() {
-        var input = Substring("\nkota")
+        var input = Reader("\nkota")
         
         let codeParamsCharacterSet = CharacterSet.alphanumerics.union(CharacterSet.whitespaces)
         
         let result = Parsers.zeroOrManyCharacters(inSet: codeParamsCharacterSet).run(&input)
         
         XCTAssertEqual(result, "")
-        XCTAssertEqual(String(input), "\nkota")
+        XCTAssertEqual(input.string(), "\nkota")
     }
     
     func test_empty_match() {
-        var input = Substring("kota")
+        var input = Reader("kota")
         
         let codeParamsCharacterSet = CharacterSet.alphanumerics.union(CharacterSet.whitespaces)
         
         let result = Parsers.zeroOrManyCharacters(inSet: codeParamsCharacterSet).run(&input)
         
         XCTAssertEqual(result, "kota")
-        XCTAssertEqual(String(input), "")
+        XCTAssertEqual(input.string(), "")
     }
 }

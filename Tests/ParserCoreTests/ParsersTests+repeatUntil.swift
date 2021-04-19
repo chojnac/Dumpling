@@ -12,7 +12,7 @@ import Dumpling
 final class ParsersTests_repeatUntil: XCTestCase {
 
     func test_repeatUntil_match() {
-        var input = Substring("Lorem ipsum")
+        var input = Reader("Lorem ipsum")
         let result = Parsers.repeatUntil(
             Parsers.char(inSet: .alphanumerics),
             stop: Parsers.space
@@ -21,11 +21,11 @@ final class ParsersTests_repeatUntil: XCTestCase {
         .run(&input)
 
         XCTAssertEqual(result, "Lorem")
-        XCTAssertEqual(String(input), "ipsum")
+        XCTAssertEqual(input.string(), "ipsum")
     }
 
     func test_repeatUntil_no_match() {
-        var input = Substring("Lorem ipsum")
+        var input = Reader("Lorem ipsum")
         let result = Parsers.repeatUntil(
             Parsers.char(inSet: .whitespaces),
             stop: Parsers.space
@@ -34,11 +34,11 @@ final class ParsersTests_repeatUntil: XCTestCase {
         .run(&input)
 
         XCTAssertEqual(result, "")
-        XCTAssertEqual(String(input), "Lorem ipsum")
+        XCTAssertEqual(input.string(), "Lorem ipsum")
     }
 
     func test_repeatUntil_emptyInput_no_match() {
-        var input = Substring("")
+        var input = Reader("")
         let result = Parsers.repeatUntil(
             Parsers.char(inSet: .whitespaces),
             stop: Parsers.space
@@ -47,7 +47,7 @@ final class ParsersTests_repeatUntil: XCTestCase {
         .run(&input)
 
         XCTAssertNil(result)
-        XCTAssertEqual(String(input), "")
+        XCTAssertEqual(input.string(), "")
     }
 
 }

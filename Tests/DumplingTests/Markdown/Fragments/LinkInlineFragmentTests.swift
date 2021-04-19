@@ -11,37 +11,37 @@ import XCTest
 
 final class LinkInlineFragmentTests: XCTestCase {
     func test_case01() {
-        var input = Substring("[this \\[[is test]]")
+        var input = Reader("[this \\[[is test]]")
         let result = LinkInlineFragment.balancedBrackets("[").run(&input)
         XCTAssertEqual(result, "this [[is test]")
-        XCTAssertEqual(String(input), "")
+        XCTAssertEqual(input.string(), "")
     }
 
     func test_case01_noMatch() {
-        var input = Substring("[this]")
+        var input = Reader("[this]")
         let result = LinkInlineFragment.balancedBrackets("<").run(&input)
         XCTAssertNil(result)
-        XCTAssertEqual(String(input), "[this]")
+        XCTAssertEqual(input.string(), "[this]")
     }
 
     func test_case02() {
-        var input = Substring("/uri")
+        var input = Reader("/uri")
         let result = LinkInlineFragment.balancedBrackets("<").run(&input)
         XCTAssertNil(result)
     }
 
     func test_case03() {
-        var input = Substring("\"test title\"")
+        var input = Reader("\"test title\"")
         let result = LinkInlineFragment.balancedBrackets("\"").run(&input)
         XCTAssertEqual(result, "test title")
-        XCTAssertEqual(String(input), "")
+        XCTAssertEqual(input.string(), "")
     }
 
     func test_case04() {
-        var input = Substring("(title)")
+        var input = Reader("(title)")
         let result = LinkInlineFragment.balancedBrackets("(").run(&input)
         XCTAssertEqual(result, "title")
-        XCTAssertEqual(String(input), "")
+        XCTAssertEqual(input.string(), "")
     }
 
     func testProcessSourceString_simple_success() {
@@ -106,7 +106,7 @@ final class LinkInlineFragmentTests: XCTestCase {
     }
 
     func testLinkSource_simple() {
-        var reader = Substring("(/uri)")
+        var reader = Reader("(/uri)")
 
         let result = LinkInlineFragment.linkSource().run(&reader)
 
@@ -115,7 +115,7 @@ final class LinkInlineFragmentTests: XCTestCase {
     }
 
     func testLinkSource_illegalCharacter() {
-        var reader = Substring("(/uri \ntest)")
+        var reader = Reader("(/uri \ntest)")
 
         let result = LinkInlineFragment.linkSource().run(&reader)
 

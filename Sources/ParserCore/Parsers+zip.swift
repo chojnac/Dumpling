@@ -8,25 +8,12 @@
 
 import Foundation
 
-// swiftlint:disable force_cast
 extension Parsers {
     public static func zip<A: ParserType, B: ParserType>(
         _ p1: A,
         _ p2: B
     ) -> Parser<(A.Element, B.Element)> {
-        AnyZipParser(
-            "zip[\(p1.name),\(p2.name)]",
-            parsers: [
-                p1.anyParser(),
-                p2.anyParser()
-            ]
-        )
-        .map {
-            (
-                $0[0] as! A.Element,
-                $0[1] as! B.Element
-            )
-        }
+        Zip2(p1: p1, p2: p2).asParser()
     }
     
     public static func zip<A: ParserType, B: ParserType, C: ParserType>(
@@ -34,21 +21,7 @@ extension Parsers {
         _ p2: B,
         _ p3: C
     ) -> Parser<(A.Element, B.Element, C.Element)> {
-        AnyZipParser(
-            "zip[\(p1.name),\(p2.name),\(p3.name)]",
-            parsers: [
-                p1.anyParser(),
-                p2.anyParser(),
-                p3.anyParser()
-            ]
-        )
-        .map {
-            (
-                $0[0] as! A.Element,
-                $0[1] as! B.Element,
-                $0[2] as! C.Element
-            )
-        }
+        Zip3(p1: p1, p2: p2, p3: p3).asParser()
     }
     
     public static func zip<A: ParserType, B: ParserType, C: ParserType, D: ParserType>(
@@ -58,25 +31,7 @@ extension Parsers {
         _ p4: D,
         debugPrefix: String? = nil
     ) -> Parser<(A.Element, B.Element, C.Element, D.Element)> {
-        
-        AnyZipParser(
-            "zip[\(p1.name),\(p2.name),\(p3.name),\(p4.name)]",
-            debugPrefix: debugPrefix,
-            parsers: [
-                p1.anyParser(),
-                p2.anyParser(),
-                p3.anyParser(),
-                p4.anyParser()
-            ]
-        )
-        .map {
-            (
-                $0[0] as! A.Element,
-                $0[1] as! B.Element,
-                $0[2] as! C.Element,
-                $0[3] as! D.Element
-            )
-        }
+        Zip4(p1: p1, p2: p2, p3: p3, p4: p4).asParser()
     }
 
     public static func zip<A: ParserType, B: ParserType, C: ParserType, D: ParserType, E: ParserType>(
@@ -87,27 +42,7 @@ extension Parsers {
         _ p5: E,
         debugPrefix: String? = nil
     ) -> Parser<(A.Element, B.Element, C.Element, D.Element, E.Element)> {
-
-        AnyZipParser(
-            "zip[\(p1.name),\(p2.name),\(p3.name),\(p4.name),\(p5.name)]",
-            debugPrefix: debugPrefix,
-            parsers: [
-                p1.anyParser(),
-                p2.anyParser(),
-                p3.anyParser(),
-                p4.anyParser(),
-                p5.anyParser()
-            ]
-        )
-        .map {
-            (
-                $0[0] as! A.Element,
-                $0[1] as! B.Element,
-                $0[2] as! C.Element,
-                $0[3] as! D.Element,
-                $0[4] as! E.Element
-            )
-        }
+        Zip5(p1: p1, p2: p2, p3: p3, p4: p4, p5: p5).asParser()
     }
 
     public static func zip<A: ParserType, B: ParserType, C: ParserType, D: ParserType, E: ParserType, F: ParserType>(
@@ -119,63 +54,216 @@ extension Parsers {
         _ p6: F,
         debugPrefix: String? = nil
     ) -> Parser<(A.Element, B.Element, C.Element, D.Element, E.Element, F.Element)> {
-
-        AnyZipParser(
-            "zip[\(p1.name),\(p2.name),\(p3.name),\(p4.name),\(p5.name)]",
-            debugPrefix: debugPrefix,
-            parsers: [
-                p1.anyParser(),
-                p2.anyParser(),
-                p3.anyParser(),
-                p4.anyParser(),
-                p5.anyParser(),
-                p6.anyParser()
-            ]
-        )
-        .map {
-            (
-                $0[0] as! A.Element,
-                $0[1] as! B.Element,
-                $0[2] as! C.Element,
-                $0[3] as! D.Element,
-                $0[4] as! E.Element,
-                $0[5] as! F.Element
-            )
-        }
+        Zip6(p1: p1, p2: p2, p3: p3, p4: p4, p5: p5, p6: p6).asParser()
     }
 }
 
-struct AnyZipParser: ParserType {
-    public let name: String
-    private let debugPrefix: String?
-    private let parsers: [Parser<Any>]
-    
-    public init(_ name: String, debugPrefix: String? = nil, parsers: [Parser<Any>]) {
-        self.name = name
-        self.parsers = debugPrefix != nil ? parsers.enumerated().map { $0.element
-            .debug(debugPrefix!+"[\($0.offset), \($0.element.name)]") } : parsers
-        self.debugPrefix = debugPrefix
-    }
+// swiftlint:disable private_over_fileprivate
+fileprivate struct Zip2<P1: ParserType, P2: ParserType>: ParserType, ParserConvertible {
+    let name: String = "zip2"
+    let p1: P1
+    let p2: P2
 
-    public func run(_ reader: inout Reader) -> [Any]? {
+    func run(_ reader: inout Reader) -> (P1.Element, P2.Element)? {
         let origin = reader
-        var results = [Any]()
-        for parser in parsers {
-            guard let result = parser.run(&reader) else {
-                reader = origin
-                return nil
-            }
-            results.append(result)
+        guard let r1 = p1.run(&reader) else {
+            reader = origin
+            return nil
         }
 
-        return results
+        guard let r2 = p2.run(&reader) else {
+            reader = origin
+            return nil
+        }
+
+        return (r1, r2)
     }
 }
 
-extension ParserType {
-    func anyParser() -> Parser<Any> {
-        return map {
-            $0
+// swiftlint:disable private_over_fileprivate
+fileprivate struct Zip3<P1: ParserType,
+                        P2: ParserType,
+                        P3: ParserType>: ParserType, ParserConvertible {
+    let name: String = "zip3"
+    let p1: P1
+    let p2: P2
+    let p3: P3
+
+    func run(_ reader: inout Reader) -> (P1.Element,
+                                         P2.Element,
+                                         P3.Element)? {
+        let origin = reader
+        guard let r1 = p1.run(&reader) else {
+            reader = origin
+            return nil
         }
+
+        guard let r2 = p2.run(&reader) else {
+            reader = origin
+            return nil
+        }
+
+        guard let r3 = p3.run(&reader) else {
+            reader = origin
+            return nil
+        }
+
+        return (r1, r2, r3)
+    }
+}
+
+// swiftlint:disable private_over_fileprivate
+fileprivate struct Zip4<
+    P1: ParserType,
+    P2: ParserType,
+    P3: ParserType,
+    P4: ParserType
+>: ParserType, ParserConvertible {
+    let name: String = "zip4"
+    let p1: P1
+    let p2: P2
+    let p3: P3
+    let p4: P4
+
+    func run(_ reader: inout Reader) -> (
+        P1.Element,
+        P2.Element,
+        P3.Element,
+        P4.Element
+    )? {
+        let origin = reader
+        guard let r1 = p1.run(&reader) else {
+            reader = origin
+            return nil
+        }
+
+        guard let r2 = p2.run(&reader) else {
+            reader = origin
+            return nil
+        }
+
+        guard let r3 = p3.run(&reader) else {
+            reader = origin
+            return nil
+        }
+
+        guard let r4 = p4.run(&reader) else {
+            reader = origin
+            return nil
+        }
+
+        return (r1, r2, r3, r4)
+    }
+}
+
+// swiftlint:disable private_over_fileprivate
+fileprivate struct Zip5<
+    P1: ParserType,
+    P2: ParserType,
+    P3: ParserType,
+    P4: ParserType,
+    P5: ParserType
+>: ParserType, ParserConvertible {
+    let name: String = "zip5"
+    let p1: P1
+    let p2: P2
+    let p3: P3
+    let p4: P4
+    let p5: P5
+
+    func run(_ reader: inout Reader) -> (
+        P1.Element,
+        P2.Element,
+        P3.Element,
+        P4.Element,
+        P5.Element
+    )? {
+        let origin = reader
+        guard let r1 = p1.run(&reader) else {
+            reader = origin
+            return nil
+        }
+
+        guard let r2 = p2.run(&reader) else {
+            reader = origin
+            return nil
+        }
+
+        guard let r3 = p3.run(&reader) else {
+            reader = origin
+            return nil
+        }
+
+        guard let r4 = p4.run(&reader) else {
+            reader = origin
+            return nil
+        }
+
+        guard let r5 = p5.run(&reader) else {
+            reader = origin
+            return nil
+        }
+
+        return (r1, r2, r3, r4, r5)
+    }
+}
+
+// swiftlint:disable private_over_fileprivate
+fileprivate struct Zip6<
+    P1: ParserType,
+    P2: ParserType,
+    P3: ParserType,
+    P4: ParserType,
+    P5: ParserType,
+    P6: ParserType
+>: ParserType, ParserConvertible {
+    let name: String = "zip6"
+    let p1: P1
+    let p2: P2
+    let p3: P3
+    let p4: P4
+    let p5: P5
+    let p6: P6
+
+    func run(_ reader: inout Reader) -> (
+        P1.Element,
+        P2.Element,
+        P3.Element,
+        P4.Element,
+        P5.Element,
+        P6.Element
+    )? {
+        let origin = reader
+        guard let r1 = p1.run(&reader) else {
+            reader = origin
+            return nil
+        }
+
+        guard let r2 = p2.run(&reader) else {
+            reader = origin
+            return nil
+        }
+
+        guard let r3 = p3.run(&reader) else {
+            reader = origin
+            return nil
+        }
+
+        guard let r4 = p4.run(&reader) else {
+            reader = origin
+            return nil
+        }
+
+        guard let r5 = p5.run(&reader) else {
+            reader = origin
+            return nil
+        }
+
+        guard let r6 = p6.run(&reader) else {
+            reader = origin
+            return nil
+        }
+
+        return (r1, r2, r3, r4, r5, r6)
     }
 }

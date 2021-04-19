@@ -11,10 +11,10 @@ import Dumpling
 
 final class ParserTests: XCTestCase {
     let testText = "Lorem ipsum"
-    var input: Substring!
+    var input: Reader!
 
     override func setUp() {
-        input = Substring(testText)
+        input = Reader(testText)
     }
 
     func test_just() {
@@ -23,7 +23,7 @@ final class ParserTests: XCTestCase {
         let result = p.run(&input)
 
         XCTAssertEqual(result, "XYZ")
-        XCTAssertEqual(String(input), testText)
+        XCTAssertEqual(input.string(), testText)
     }
 
     func test_zero() {
@@ -32,7 +32,7 @@ final class ParserTests: XCTestCase {
         let result = p.run(&input)
 
         XCTAssertNil(result)
-        XCTAssertEqual(String(input), testText)
+        XCTAssertEqual(input.string(), testText)
     }
 
     func test_map_with_result() {
@@ -43,7 +43,7 @@ final class ParserTests: XCTestCase {
 
         let result = parser.run(&input)
         XCTAssertEqual(result, "0L0")
-        XCTAssertEqual(String(input), testText)
+        XCTAssertEqual(input.string(), testText)
     }
 
     func test_flatMap_with_result() {
@@ -61,14 +61,14 @@ final class ParserTests: XCTestCase {
 
         XCTAssertEqual(result1, true)
         XCTAssertEqual(result2, nil)
-        XCTAssertEqual(String(input), testText)
+        XCTAssertEqual(input.string(), testText)
     }
 
     func test_lookAhead() {
-        var input2 = Substring(testText)
+        var input2 = Reader(testText)
 
         let p = Parser<String>("p") {  reader in
-            reader = Substring("")
+            reader = Reader("")
             return "XYZ"
         }
 
@@ -79,8 +79,8 @@ final class ParserTests: XCTestCase {
         XCTAssertEqual(result1, "XYZ")
         XCTAssertNil(result2)
         XCTAssertEqual(result3, "XYZ")
-        XCTAssertEqual(String(input), testText)
-        XCTAssertEqual(String(input2), "")
+        XCTAssertEqual(input.string(), testText)
+        XCTAssertEqual(input2.string(), "")
         
     }
 

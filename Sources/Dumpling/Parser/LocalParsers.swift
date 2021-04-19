@@ -36,11 +36,12 @@ extension Parsers {
 
     /// Match any single character
     public static let anyCharacter = Parser<Character>("anyCharacter") { reader in
-        guard let ch = reader.popFirst() else {
-            return nil
+        if let result = reader.first {
+            reader = reader.dropFirst()
+            return result
         }
 
-        return ch
+        return nil
     }
 
     public static let singleEmptyLine = Parsers.oneOf(
@@ -74,17 +75,19 @@ extension Parsers {
 
     public static let space: Parser<Void> = Parsers.one(character: " ")
         .mapToVoid
-    
+
+    @inlinable
+    @inline(__always)
     public static func one(character: Character) -> Parser<Character> {
         .init("oneChacter:\(character)") { reader in
             let origin = reader
-            guard let ch = reader.popFirst() else { return nil }
+            guard let ch = reader.first else { return nil }
 
             guard ch == character else {
                 reader = origin
                 return nil
             }
-
+            reader = reader.dropFirst()
             return character
         }
     }
@@ -152,8 +155,9 @@ extension Parsers {
 
             let origin = reader
 
-            if let ch = reader.popFirst(),
+            if let ch = reader.first,
                 ch.unicodeScalars.allSatisfy(inSet.contains) {
+                reader = reader.dropFirst()
                 return ch
             }
 
@@ -206,8 +210,8 @@ extension Parsers {
                 let readerBeforeCheck = reader
                 if stop.run(&reader) != nil {
                     reader = readerBeforeCheck // stop is not consuming
-                    let text = textBuffer[..<readerBeforeCheck.startIndex]
-                    return String(text)
+                    let text = textBuffer.sub(endIndex: readerBeforeCheck.startIndex)
+                    return text.string()
                 }
 
                 reader = reader.dropFirst()
@@ -216,7 +220,7 @@ extension Parsers {
                     if textBuffer.isEmpty {
                         return nil
                     }
-                    return String(textBuffer)
+                    return textBuffer.string()
                 }
             } while true
         }

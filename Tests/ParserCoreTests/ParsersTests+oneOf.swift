@@ -11,10 +11,10 @@ import Dumpling
 
 final class Parsers_oneOf: XCTestCase {
     let testText = "Lorem ipsum"
-    var input: Substring!
+    var input: Reader!
 
     override func setUp() {
-        input = Substring(testText)
+        input = Reader(testText)
     }
 
     func test_oneOf_case1() {
@@ -24,7 +24,7 @@ final class Parsers_oneOf: XCTestCase {
 
         let result = Parsers.oneOf(p1, p2).run(&input)
         XCTAssertEqual(result, "L")
-        XCTAssertEqual(String(input), testText)
+        XCTAssertEqual(input.string(), testText)
     }
 
     func test_oneOf_case2() {
@@ -34,7 +34,7 @@ final class Parsers_oneOf: XCTestCase {
 
         let result = Parsers.oneOf(p1, p2).run(&input)
         XCTAssertEqual(result, "L")
-        XCTAssertEqual(String(input), testText)
+        XCTAssertEqual(input.string(), testText)
     }
 
     func test_oneOf_no_match() {
@@ -44,7 +44,7 @@ final class Parsers_oneOf: XCTestCase {
 
         let result = Parsers.oneOf(p2, p1).run(&input)
         XCTAssertEqual(result, nil)
-        XCTAssertEqual(String(input), testText)
+        XCTAssertEqual(input.string(), testText)
     }
 
 }
