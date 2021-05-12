@@ -129,6 +129,13 @@ public struct CodeNodeHTMLRenderFragment: HTMLRenderFragment {
         var chunks = [String]()
         node.isBlock ? chunks.append("\n<pre>") : nil
         chunks.append("<code")
+        if node.isBlock, !(node.params?.isEmpty ?? true) {
+            let params = node.params?.split(separator: " ") ?? []
+            if params.count > 0 {
+                let lang = params[0].trimmingCharacters(in: .whitespaces)
+                chunks.append(" class=\"language-\(lang)\"")
+            }
+        }
         chunks.append(">")
         chunks.append(renderer.render(node.children))
         chunks.append("</code>")

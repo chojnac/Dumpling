@@ -82,3 +82,9 @@ public struct Reader {
         base[startIndex..<endIndex].starts(with: string)
     }
 }
+
+extension Reader: CustomStringConvertible {
+    public var description: String {
+        String(base[startIndex..<endIndex])
+    }
+}

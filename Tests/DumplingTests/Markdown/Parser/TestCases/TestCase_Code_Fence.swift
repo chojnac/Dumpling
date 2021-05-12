@@ -25,5 +25,27 @@ extension TestCase {
             text: "Inline `code` or\n```\nblock code\n```",
             parsed: "<p>Inline␣<code>code</code>␣or⌟</p><code block=\"true\">block code</code>"
         )
+
+        static let case04 = TestCase(
+            text: """
+            ```    ruby startline=3 $%@#$
+            def foo(x)
+              return 3
+            end
+            ```
+            """,
+            parsed: "<code params=\"ruby startline=3 $%@#$\" block=\"true\">def foo(x)\n  return 3\nend</code>"
+        )
+
+        static let case05 = TestCase(
+            text: "````\naaa\n```\n``````",
+            parsed: "<code block=\"true\">aaa\n```</code>"
+        )
+
+        // Unclosed code blocks are closed by the end of the document
+        static let case06 = TestCase(
+            text: "````\naaa",
+            parsed: "<code block=\"true\">aaa</code>"
+        )
     }
 }

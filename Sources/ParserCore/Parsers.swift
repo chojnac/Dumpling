@@ -66,15 +66,15 @@ public enum Parsers {
             var accumulator: [P1.Element] = []
 
             repeat {
+                if let stopValue = stop.run(&reader) {
+                    return (accumulator, stopValue)
+                }
+
                 guard !reader.isEmpty else {
                     if accumulator.isEmpty {
                         return nil
                     }
                     return (accumulator, nil)
-                }
-
-                if let stopValue = stop.run(&reader) {
-                    return (accumulator, stopValue)
                 }
 
                 if let parserValue = check.run(&reader) {

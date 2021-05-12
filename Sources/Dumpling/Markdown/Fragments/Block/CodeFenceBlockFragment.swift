@@ -14,47 +14,48 @@ public struct CodeFenceBlockFragment: MarkdownBlockFragment {
     public init() {}
     
     public func build(markdown: MarkdownType) -> Parser<AST.CodeNode> {
-        let codeParamsCharacterSet = CharacterSet.alphanumerics.union(CharacterSet.whitespaces)
-        let codeParamsParser = Parsers.zip(
-            Parsers.zeroOrManySpaces,
-            Parsers.zeroOrManyCharacters(inSet: codeParamsCharacterSet),
-            Parsers.zeroOrManySpaces
-        ).map { $0.1 }
 
-        // TODO: suppor opening/closing with more that 3 ` characters
+        let codeParamsParser = Parsers.repeatUntil(Parsers.anyCharacter, stop: Parsers.lineEnd)
+            .map {
+                String($0.accumulator).trimmingCharacters(in: .whitespaces)
+            }
+
+        // TODO: support opening/closing with more that 3 ` characters
         let opening = Parsers.zip(
             Parsers.lineStart,
             Parsers.zeroOrManySpaces,
-            Parsers.starts(with: String(repeating: "`", count: 3)),
-            // Parsers.min(character: "`", min: 3),
-            codeParamsParser,
-            Parsers.newLine
-        ).map { _, _, _, params, _  in
-            params
+            Parsers.minMax(parser: Parsers.one(character: "`"), min: 3),
+            codeParamsParser
+        ).map { _, _, fence, params  in
+            (fence: fence, params: params)
         }
 
-        let closing = Parsers.zip(
-            Parsers.newLine,
-            Parsers.zeroOrManySpaces,
-            Parsers.starts(with: String(repeating: "`", count: 3)),
-            Parsers.zeroOrManySpaces,
-            Parsers.oneOf(Parsers.newLine, Parsers.isDocEnd)
-        )
-
-        let parser = opening.flatMap { params in
-            Parsers.zip(
-                Parser<String>.just(params),
-                Parsers.repeatUntil(Parsers.anyCharacter, stop: closing)
-                    .flatMap {
-                        $0.stop == nil ? .zero() : .just(String($0.accumulator))
-                    }
-
+        func closing(opening: [Character]) -> Parser<Void> {
+            return Parsers.oneOf(
+                Parsers.isDocEnd,
+                Parsers.zip(
+                    Parsers.newLine,
+                    Parsers.zeroOrManySpaces,
+                    Parsers.min(character: opening[0], min: UInt(opening.count)),
+                    Parsers.zeroOrManySpaces,
+                    Parsers.lineEnd
+                ).mapToVoid
             )
-        }.map { params, body in
-            (params: params, body: body)
-        }.map {
-            AST.CodeNode(params: $0.params, body: $0.body, isBlock: true)
         }
+
+        let parser = opening
+            .flatMap { result -> Parser<(String, String)> in
+                let closing = closing(opening: result.fence)
+                return Parsers.zip(
+                    Parser<String>.just(result.params),
+                    Parsers.repeatUntil(Parsers.anyCharacter, stop: closing)
+                        .flatMap {
+                            $0.stop == nil ? .zero() : .just(String($0.accumulator))
+                        }
+                )
+            }.map {
+                AST.CodeNode(params: $0.0, body: $0.1, isBlock: true)
+            }
 
         return parser
     }
