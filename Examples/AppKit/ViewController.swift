@@ -26,8 +26,16 @@ final class ViewController: NSViewController {
         super.viewDidLoad()
         changePreviewType(typeSelection)
 
-        let testingFilePath = Bundle.main.url(forResource: "text02.md", withExtension: nil)!
-        let text = try! String(contentsOf: testingFilePath)
+        let text: String
+
+        if let fileURL = fileFromCommandlineArgument() {
+            print("Open file from: \(fileURL)")
+            let data = try! Data(contentsOf: fileURL)
+            text = String(decoding: data, as: UTF8.self)
+        } else {
+            let testingFilePath = Bundle.main.url(forResource: "text02.md", withExtension: nil)!
+            text = try! String(contentsOf: testingFilePath)
+        }
 
         let parser = Markdown()
         let ast = parser.parse(text)
@@ -44,6 +52,32 @@ final class ViewController: NSViewController {
     @IBAction func changePreviewType(_ source: NSSegmentedControl) {
         webView.isHidden = source.selectedSegment == 0
         textView.enclosingScrollView?.isHidden = !webView.isHidden
+    }
+
+    private func fileFromCommandlineArgument() -> URL? {
+        // remove arguments from the Xcode
+        let arguments = CommandLine.arguments.dropFirst()
+            .filter {
+                !$0.hasPrefix("-") &&
+                $0 != "YES"
+            }
+
+        guard let filePath = arguments.first else { return nil }
+
+        let fileURL: URL
+
+        if filePath.hasPrefix("/") {
+            fileURL = URL(fileURLWithPath: filePath, isDirectory: false)
+        } else if filePath.starts(with: "~") {
+            let path = NSString(string: filePath).expandingTildeInPath
+            fileURL = URL(fileURLWithPath: path, isDirectory: false)
+        } else {
+            let directory = FileManager.default.currentDirectoryPath
+            let directoryURL = URL(fileURLWithPath: directory, isDirectory: true)
+            fileURL = directoryURL.appendingPathComponent(filePath)
+        }
+
+        return fileURL
     }
 }
 
