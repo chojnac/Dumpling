@@ -30,7 +30,7 @@ public struct CodeFenceBlockFragment: MarkdownBlockFragment {
             (fence: fence, params: params)
         }
 
-        func closing(opening: [Character]) -> Parser<Void> {
+        func closingParser(opening: [Character]) -> Parser<Void> {
             return Parsers.oneOf(
                 Parsers.isDocEnd,
                 Parsers.zip(
@@ -45,7 +45,7 @@ public struct CodeFenceBlockFragment: MarkdownBlockFragment {
 
         let parser = opening
             .flatMap { result -> Parser<(String, String)> in
-                let closing = closing(opening: result.fence)
+                let closing = closingParser(opening: result.fence)
                 return Parsers.zip(
                     Parser<String>.just(result.params),
                     Parsers.repeatUntil(Parsers.anyCharacter, stop: closing)
