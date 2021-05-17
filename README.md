@@ -80,14 +80,14 @@ pod 'Dumpling'
 ### Carthage
 
 ```
-github "chojnac/Dumpling.git" ~> 0.2.0
+github "chojnac/Dumpling.git" ~> 0.3.0
 ```
 
 ### Swift Package Manager
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/chojnac/Dumpling.git", .upToNextMajor(from: "0.2.0"))
+    .package(url: "https://github.com/chojnac/Dumpling.git", .upToNextMajor(from: "0.3.0"))
 ]
 ```
 
