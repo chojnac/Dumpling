@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol Renderer {
+public protocol Renderer {
     associatedtype Output
 
     func render(_ ast: AST.RootNode) -> Output
