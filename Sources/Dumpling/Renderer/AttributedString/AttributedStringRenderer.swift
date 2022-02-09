@@ -19,7 +19,7 @@ public typealias StringAttributesType = [NSAttributedString.Key: Any]
 public class AttributedStringRenderer: Renderer {
     /// Helper type preventing exposing `HTMLRenderer::render(_ nodes: [ASTNode])` in the public interface
     private struct ContentRenderer: AttributedStringContentRenderer {
-        let renderer: AttributedStringRenderer
+        unowned let renderer: AttributedStringRenderer
         func render(_ nodes: [ASTNode], context: AttributedStringRenderer.Context) -> NSAttributedString {
             renderer.render(nodes, context: context)
         }

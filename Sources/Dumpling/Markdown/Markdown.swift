@@ -46,7 +46,11 @@ public final class Markdown {
         exitParser: Parser<Void>,
         preExitCheckParser: Parser<Void>? = nil
     ) -> Parser<[ASTNode]> {
-        return .init("inline") { reader in
+        return .init("inline") { [weak self] reader in
+            guard let self = self else {
+                return nil
+            }
+            
             guard !reader.isEmpty else {
                 return nil
             }
